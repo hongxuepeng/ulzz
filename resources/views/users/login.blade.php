@@ -5,19 +5,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+        <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
         <title>Ulzz.com</title>
-        <link href="/css/jquery.toast.css" rel="stylesheet">
-        <link href="/css/style.default.css" rel="stylesheet">
+        <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-        <script src="/js/html5shiv.js"></script>
-        <script src="/js/respond.min.js"></script>
+        <script src="{{ asset('js/html5shiv.js') }}"></script>
+        <script src="{{ asset('js/respond.min.js') }}"></script>
         <![endif]-->
     </head>
     <body class="signin">
         <section>
-            <h1>首页</h1>
             <div class="signinpanel">
                 <div class="row">
                     <div class="col-md-7">
@@ -39,11 +38,12 @@
                         </div><!-- signin0-info -->
                     </div><!-- col-sm-7 -->
                     <div class="col-md-5">
-                        <form method="post" action="">
+                        <form method="post">
                             <h4 class="nomargin">Sign In</h4>
                             <p class="mt5 mb20">Login to access your account.</p>
-                            <input type="text" class="form-control uname" placeholder="Username" />
-                            <input type="password" class="form-control pword" placeholder="Password" />
+                            <input type="hidden" name="_token"  value="{{csrf_token()}}"/>
+                            <input type="text" class="form-control uname" placeholder="user_login" />
+                            <input type="password" class="form-control pword" placeholder="user_pwd" />
                             <a href=""><small>Forgot Your Password?</small></a>
                             <button class="btn btn-success btn-block" onclick="Loagin();return false;">Sign In</button>
                         </form>
@@ -59,16 +59,16 @@
                 </div>
             </div><!-- signin -->
         </section>
-        <script src="/js/jquery-1.11.1.min.js"></script>
-        <script src="/js/jquery-migrate-1.2.1.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/modernizr.min.js"></script>
-        <script src="/js/jquery.sparkline.min.js"></script>
-        <script src="/js/jquery.cookies.js"></script>
-        <script src="/js/toggles.min.js"></script>
-        <script src="/js/retina.min.js"></script>
-        <script src="/js/jquery.toast.js"></script>
-        <script src="/js/custom.js"></script>
+        <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/modernizr.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.cookies.js') }}"></script>
+        <script src="{{ asset('js/toggles.min.js') }}"></script>
+        <script src="{{ asset('js/retina.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.toast.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
         <script>
             jQuery(document).ready(function(){
                 // Please do not use the code below
@@ -85,6 +85,11 @@
             function Loagin() {
                 var uname=$(".uname").val();
                 var pword=$(".pword").val();
+                var data  ={
+                    _token : $('input[name=_token]').val(),
+                    user_login : uname,
+                    user_pwd  : pword,
+                };
                 if(uname==""){
                     $.toast({
                         heading: 'Error',
@@ -106,9 +111,16 @@
                     });
                     $(".pword").addClass("SOGWarming");
                 }else{
-                    $.cookie('uname', uname);
-                    $.cookie('lan','cn');
-                    location.href = 'index.html';
+                    $.post("{{url('users/login')}}",data,function(msg){
+                        if(msg.status == 1){
+                            //console.log(msg);
+                            $.cookie('uname', uname);
+                            $.cookie('lan','cn');
+                            location.href = "{{ asset('/') }}";
+                        }else{
+                            console.log(msg);
+                        }
+                    },'json');
                 }
             }
             function CacheClass() {

@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::group(['prefix'=>'menu'],function() {
-    $controller = 'Menu\MenuController@';
-    #菜单列表页
-    Route::any('lister',$controller.'lister');
-    #菜单添加
-    Route::any('add',$controller.'add');
-});
-#菜单管理 菜单列表
-Route::get('admin_menu_index','MenuController@index');
+Route::get('/','IndexController@index');
+
+//登录
+Route::any('users/login','UsersController@login');
+Route::any('users/logout','UsersController@logout');
+//用户登陆
+/*Route::group(['prefix'=>'users'],function() {
+    $controller = 'Users\UsersController@';
+    #用户登陆
+    Route::any('login',$controller.'login');
+
+});*/
