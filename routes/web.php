@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::group(['prefix'=>'menu'],function() {
+    $controller = 'Menu\MenuController@';
+    #菜单列表页
+    Route::any('lister',$controller.'lister');
+    #菜单添加
+    Route::any('add',$controller.'add');
+});
