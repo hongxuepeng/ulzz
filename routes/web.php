@@ -21,3 +21,5 @@ Route::group(['prefix'=>'menu'],function() {
     #菜单添加
     Route::any('add',$controller.'add');
 });
+#菜单管理 菜单列表
+Route::get('admin_menu_index','MenuController@index');
