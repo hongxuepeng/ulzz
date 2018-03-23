@@ -113,12 +113,17 @@
                 }else{
                     $.post("{{url('users/login')}}",data,function(msg){
                         if(msg.status == 1){
-                            //console.log(msg);
-                            $.cookie('uname', uname);
                             $.cookie('lan','cn');
                             location.href = "{{ asset('/') }}";
                         }else{
-                            console.log(msg);
+                            $.toast({
+                                heading: 'Error',
+                                text: msg.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'error',
+                                hideAfter: 1500
+                            });
                         }
                     },'json');
                 }
