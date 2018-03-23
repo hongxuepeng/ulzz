@@ -43,9 +43,21 @@ class UsersController extends Controller
 				unset($user_info->user_pwd);
 				Session::put('user_info',$user_info->toArray());
 				Session::save();
-				return ajax_success('登陆成功',['url'=>'/']);
+				return ajax_success('登陆成功',$user_info->toArray());
 			}
 		}
 		return view('users.login');
+	}
+
+	/**
+	 * [用户登出 登出方法]
+	 * @author 李成龙
+	 * @param    NULL
+	 * @return   重定向登陆页
+	 */
+	public function logout(){
+		Session::forget('user_id');
+		Session::forget('user_info');
+		return redirect('users/login');
 	}
 }

@@ -6,8 +6,8 @@
  * Time: 18:28
  */
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-class IndexController extends Controller
+use App\Http\Controllers\BaseController;
+class IndexController extends BaseController
 {
 	/**
 	 * [Index 首页]
