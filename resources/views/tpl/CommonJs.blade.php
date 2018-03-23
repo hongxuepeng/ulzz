@@ -11,7 +11,6 @@
         <script src="{{ asset('js') }}/modernizr.min.js"></script>
         <script src="{{ asset('js') }}/jquery.sparkline.min.js"></script>
         <script src="{{ asset('js') }}/toggles.min.js"></script>
-        <script src="{{ asset('js') }}/retina.min.js"></script>
         <script src="{{ asset('js') }}/jquery.cookies.js"></script>
         <script src="{{ asset('js') }}/flot/jquery.flot.min.js"></script>
         <script src="{{ asset('js') }}/flot/jquery.flot.resize.min.js"></script>
