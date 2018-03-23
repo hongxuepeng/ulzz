@@ -24,5 +24,6 @@
             </div><!-- mainpanel -->
         </section>
         @include('tpl.CommonBottom')
+        <h1>123</h1>
     </body>
 </html>
