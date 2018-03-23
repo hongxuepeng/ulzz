@@ -57,6 +57,9 @@
                 }
             }
             GetCookie();
+            $.get("{{ url('getMenu') }}", function(result){
+                console.log(result);
+            });
         </script>
     </body>
 </html>

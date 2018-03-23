@@ -13,6 +13,9 @@
 
 Route::get('/','IndexController@index');
 
+//菜单提取
+Route::any('getMenu','PublicController@getMenu');
+
 //登录
 Route::any('users/login','UsersController@login');
 Route::any('users/logout','UsersController@logout');
@@ -31,5 +34,14 @@ Route::group(['prefix'=>'role'],function() {
 	#角色列表
 	Route::get('lister',$controller.'lister');
 	#角色添加
+	Route::any('add',$controller.'add');
+});
+
+//菜单管理
+Route::group(['prefix'=>'menu'],function() {
+	$controller = 'Menu\MenuController@';
+	#菜单列表页
+	Route::get('lister',$controller.'lister');
+	#菜单添加
 	Route::any('add',$controller.'add');
 });
