@@ -35,6 +35,9 @@ class PublicController extends Controller
 				}
 			}
 		}
-		//$menu_lists =_tree_hTree(_tree_sort($menu_lists,'list_order'));
-		return ajax_success('获取成功',(object)$menu_lists);
+		$menu_lists =_tree_hTree(_tree_sort($menu_lists,'list_order'));
+
+		//return json_encode($arr);
+		//p($arr);
+		return json_encode($menu_lists);
 	}}
