@@ -79,6 +79,7 @@ body {
     background: #1d2939;
     font-family: 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif !important;
     line-height: 21px;
+    padding-right: 0!important;
 }
 
 body.notfound,

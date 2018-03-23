@@ -68,7 +68,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right" id="language-switch">
                         <li type="cn"><a href="javascript:void(0)"><i class="fa fa-language mr10"></i><span set-lan="html:CHINESE">简体中文</span></a></li>
-                        <li type="en"><a href="javascript:void(0)><i class="fa fa-language mr10"></i><span set-lan="html:ENGLISH">英文</span></a></li>
+                        <li type="en"><a href="javascript:void(0)"><i class="fa fa-language mr10"></i><span set-lan="html:ENGLISH">英文</span></a></li>
                     </ul>
                 </div>
             </li>
