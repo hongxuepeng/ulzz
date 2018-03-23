@@ -108,7 +108,13 @@
 </div><!-- leftpanel -->
 <script type="text/html" id="menu">
     @{{each data}}
-    <li><a href="@{{$value.url}}"><i class="fa fa-home"></i> <span set-lan="html:HOME">@{{$value.name}}</span></a></li>
+    <li class="nav-parent"><a href="javascript:void(0)"><i class="fa @{{$value.icon}}"></i> <span>@{{$value.name}}</span></a>
+        <ul class="children">
+            @{{each $value.child as child index}}
+            <li><a href="@{{child.url}}" target="_self"><i class="fa fa-caret-right"></i><span>@{{child.name}}</span></a></li>
+            @{{/each}}
+        </ul>
+    </li>
     @{{/each}}
 </script>
 <script type="text/javascript">

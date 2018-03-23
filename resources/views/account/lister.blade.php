@@ -7,12 +7,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{ asset('images') }}/favicon.png" type="image/png">
     <title>Ulzz.com</title>
-    <link href="{{ asset('css') }}/style.default.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="{{ asset('js') }}/html5shiv.js"></script>
-    <script src="{{ asset('js') }}/respond.min.js"></script>
-    <![endif]-->
+    @include('tpl.CommonJs')
 </head>
 <body>
 <!-- Preloader -->
@@ -24,46 +19,213 @@
     <div class="mainpanel">
         @include('tpl.header')
         @include('tpl.bread')
-        <div class="contentpanel">
-<h1>账户列表</h1>
-
-
+        <div class="contentpanel">       
+            <div class="the-content">
+                <div class="the-control mb10">
+                    <select class="form-control leftoption">
+                        <option set-lan="html:NAME">名称</option>
+                    </select>
+                    <input type="text" class="form-control centerinput">
+                    <button class="btn btn-info rightbutton" set-lan="html:SEARCH">搜索</button>
+                </div>
+                <div class="the-header mb10">
+                    <span set-lan="html:HEADERLIST">业务人员列表</span>
+                    <small class="common_add"></small>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-primary table-striped mb30">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th set-lan="html:TABLENAME">名称</th>
+                            <th set-lan="html:ACCOUNT">账号</th>
+                            <th set-lan="html:USERROLES">用户角色</th>
+                            <th set-lan="html:AREA">区域</th>
+                            <th set-lan="html:CONTACT">联系方式</th>
+                            <th set-lan="html:ENABLED">启用状态</th>
+                            <th set-lan="html:CREATE">创建时间</th>
+                            <th set-lan="html:OPERATION">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>admin</td>
+                                <td>root</td>
+                                <td>管理员</td>
+                                <td>广东</td>
+                                <td>18025330961</td>
+                                <td set-lan="html:ENABLEDOPTION">启用</td>
+                                <td>2017-12-15 12:29:45</td>
+                                <td class="operation">
+                                    <span class="edit" set-lan="html:EDIT">编辑</span>
+                                    <em class="item-action-split"></em>
+                                    <span class="delete" set-lan="html:DELETE">删除</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>张三</td>
+                                <td>zhangsan</td>
+                                <td>业务员</td>
+                                <td>广东</td>
+                                <td>18025330961</td>
+                                <td set-lan="html:ENABLEDOPTION">启用</td>
+                                <td>2017-12-15 12:29:45</td>
+                                <td class="operation">
+                                    <span class="edit" set-lan="html:EDIT">编辑</span>
+                                    <em class="item-action-split"></em>
+                                    <span class="delete" set-lan="html:DELETE">删除</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>lisi</td>
+                                <td>root</td>
+                                <td>管理员</td>
+                                <td>广东</td>
+                                <td>18025330961</td>
+                                <td set-lan="html:ENABLEDOPTION">启用</td>
+                                <td>2017-12-15 12:29:45</td>
+                                <td class="operation">
+                                    <span class="edit" set-lan="html:EDIT">编辑</span>
+                                    <em class="item-action-split"></em>
+                                    <span class="delete" set-lan="html:DELETE">删除</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>admin</td>
+                                <td>root</td>
+                                <td>管理员</td>
+                                <td>广东</td>
+                                <td>18025330961</td>
+                                <td set-lan="html:ENABLEDOPTION">启用</td>
+                                <td>2017-12-15 12:29:45</td>
+                                <td class="operation">
+                                    <span class="edit" set-lan="html:EDIT">编辑</span>
+                                    <em class="item-action-split"></em>
+                                    <span class="delete" set-lan="html:DELETE">删除</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>张三</td>
+                                <td>zhangsan</td>
+                                <td>业务员</td>
+                                <td>广东</td>
+                                <td>18025330961</td>
+                                <td set-lan="html:ENABLEDOPTION">启用</td>
+                                <td>2017-12-15 12:29:45</td>
+                                <td class="operation">
+                                    <span class="edit" set-lan="html:EDIT">编辑</span>
+                                    <em class="item-action-split"></em>
+                                    <span class="delete" set-lan="html:DELETE">删除</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox"></td>
+                                <td>lisi</td>
+                                <td>root</td>
+                                <td>管理员</td>
+                                <td>广东</td>
+                                <td>18025330961</td>
+                                <td set-lan="html:ENABLEDOPTION">启用</td>
+                                <td>2017-12-15 12:29:45</td>
+                                <td class="operation">
+                                    <span class="edit" set-lan="html:EDIT">编辑</span>
+                                    <em class="item-action-split"></em>
+                                    <span class="delete" set-lan="html:DELETE">删除</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- table-responsive -->
+            </div>
         </div><!-- contentpanel -->
-
     </div><!-- mainpanel -->
 </section>
-<script src="{{ asset('js') }}/jquery-1.11.1.min.js"></script>
-<script src="{{ asset('js') }}/jquery-migrate-1.2.1.min.js"></script>
-<script src="{{ asset('js') }}/jquery-ui-1.10.3.min.js"></script>
-<script src="{{ asset('js') }}/bootstrap.min.js"></script>
-<script src="{{ asset('js') }}/modernizr.min.js"></script>
-<script src="{{ asset('js') }}/jquery.sparkline.min.js"></script>
-<script src="{{ asset('js') }}/toggles.min.js"></script>
-<script src="{{ asset('js') }}/retina.min.js"></script>
-<script src="{{ asset('js') }}/jquery.cookies.js"></script>
-<script src="{{ asset('js') }}/judge-cookie.js?v=1.01"></script>
-<script src="{{ asset('js') }}/flot/jquery.flot.min.js"></script>
-<script src="{{ asset('js') }}/flot/jquery.flot.resize.min.js"></script>
-<script src="{{ asset('js') }}/flot/jquery.flot.spline.min.js"></script>
-<script src="{{ asset('js') }}/morris.min.js"></script>
-<script src="{{ asset('js') }}/raphael-2.1.0.min.js"></script>
-<script src="{{ asset('js') }}/custom.js"></script>
-<script src="{{ asset('js') }}/dashboard.js"></script>
-<script src="{{ asset('js') }}/language.js"></script>
-<script type="text/javascript">
-    function GetCookie() {
-        var uname = "{{session('user_id')}}";
-        if(uname == "" || uname == undefined || uname == null){
-            location.href = "{{ url('users/login') }}";
-        }
-    }
-    GetCookie();
-    function SignOut() {
-        $(".signout").click(function(){
-            location.href = "{{ url('users/login') }}";
-        });
-    }
-    SignOut();
+@include('tpl.CommonBottom')
+<!-- 添加以及编辑弹框容器 -->
+<div class="modal fade bs-example-modal-static" id="AddModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+                <h4 class="modal-title" set-lan="html:MODALTITLE">用户维护</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:TABLENAME">名称:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:ACCOUNT">账号:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:MODALPASSWORD">密码:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:ENABLED">启用状态:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option value="1" set-lan="html:ENABLEDOPTION">启用</option>
+                                <option value="0" set-lan="html:DISABLEDOPTION">停用</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:CONTACT">联系方式:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:EMAIL">邮箱:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:AREA">区域:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option value="">广东</option>
+                                <option value="">浙江</option>
+                                <option value="">江苏</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:USERROLES">用户角色:</label>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option value="">管理员</option>
+                                <option value="">业务员</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+                <div class="add_btn">
+                    <span id="AddSave" type="add">保存</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".common_add,.edit").click(function () {
+        $("#AddModal").modal();
+    });
 </script>
 </body>
 </html>
