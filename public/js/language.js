@@ -120,7 +120,7 @@ function BindLanguage() {
                 var t = en[m];
                 break;
             default:
-                var t = hk[m];
+                var t = cn[m];
         }
 
         //如果所选语言的json中没有此内容就选取其他语言显示

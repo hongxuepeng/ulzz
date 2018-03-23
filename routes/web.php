@@ -16,10 +16,20 @@ Route::get('/','IndexController@index');
 //登录
 Route::any('users/login','UsersController@login');
 Route::any('users/logout','UsersController@logout');
-//用户登陆
-/*Route::group(['prefix'=>'users'],function() {
-    $controller = 'Users\UsersController@';
-    #用户登陆
-    Route::any('login',$controller.'login');
 
-});*/
+//账户管理
+Route::group(['prefix'=>'account'],function() {
+	$controller = 'Account\AccountController@';
+	#账户列表
+	Route::get('lister',$controller.'lister');
+	#添加管理员
+	Route::any('add',$controller.'add');
+});
+//角色管理
+Route::group(['prefix'=>'role'],function() {
+	$controller = 'Role\RoleController@';
+	#角色列表
+	Route::get('lister',$controller.'lister');
+	#角色添加
+	Route::any('add',$controller.'add');
+});
