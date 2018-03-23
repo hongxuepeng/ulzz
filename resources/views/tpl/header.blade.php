@@ -1,8 +1,5 @@
 <div class="headerbar">
     <a class="menutoggle"><i class="fa fa-bars"></i></a>
-    <form class="searchform" action="index.html" method="post">
-        <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
-    </form>
     <div class="header-right">
         <ul class="headermenu">
             <li>
@@ -70,8 +67,8 @@
                         <i class="glyphicon glyphicon-globe"></i>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right" id="language-switch">
-                        <li type="cn"><a href="#"><i class="fa fa-language mr10"></i><span set-lan="html:CHINESE">简体中文</span></a></li>
-                        <li type="en"><a href="#"><i class="fa fa-language mr10"></i><span set-lan="html:ENGLISH">英文</span></a></li>
+                        <li type="cn"><a href="javascript:void(0)"><i class="fa fa-language mr10"></i><span set-lan="html:CHINESE">简体中文</span></a></li>
+                        <li type="en"><a href="javascript:void(0)><i class="fa fa-language mr10"></i><span set-lan="html:ENGLISH">英文</span></a></li>
                     </ul>
                 </div>
             </li>

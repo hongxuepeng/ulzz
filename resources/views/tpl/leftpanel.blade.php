@@ -21,7 +21,7 @@
             </ul>
         </div>
         <h5 class="sidebartitle" set-lan="html:Navigation">Navigation</h5>
-        <ul class="nav nav-pills nav-stacked nav-bracket">
+        <ul class="nav nav-pills nav-stacked nav-bracket" id="NavMeau">
             <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span set-lan="html:HOME">首页</span></a></li>
             <li class="nav-parent"><a href=""><i class="fa fa-laptop"></i> <span set-lan="html:USER">账号管理</span></a>
                 <ul class="children">
@@ -106,32 +106,28 @@
         </div><!-- infosummary -->
     </div><!-- leftpanelinner -->
 </div><!-- leftpanel -->
+<script type="text/html" id="menu">
+    @{{each data}}
+    <li><a href="@{{$value.url}}"><i class="fa fa-home"></i> <span set-lan="html:HOME">@{{$value.name}}</span></a></li>
+    @{{/each}}
+</script>
 <script type="text/javascript">
     $.ajax({
         url:"{{url('getMenu')}}",
         type:'POST', //GET
-        async:true,    //或false,是否异步
-        data:{
-            name:'yang',age:25
-            },
+        async:false,    //或false,是否异步
         timeout:5000,    //超时时间
+        data:{"_token":"{{csrf_token()}}"},
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-        beforeSend:function(xhr){
-            console.log(xhr)
-            console.log('发送前')
+        success:function(data){
+            console.log(data);
+            if(data.status=="1"){
+                var tableHTML = template('menu', data);
+                $("#NavMeau").html(tableHTML);
+            }
         },
-        success:function(data,textStatus,jqXHR){
-            console.log(data)
-            console.log(textStatus)
-            console.log(jqXHR)
-        },
-        error:function(xhr,textStatus){
+        error:function(){
             console.log('错误')
-            console.log(xhr)
-            console.log(textStatus)
-        },
-        complete:function(){
-            console.log('结束')
         }
     });
 </script>
