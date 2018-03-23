@@ -21,12 +21,13 @@ class PublicController extends Controller
 	 */
 	public function getMenu()
 	{
+		if(!session('user_id')){
+			return ajax_error('获取失败');
+		}
 		$adminMenu = new Ulizz_menu();
 		//取出菜单和用户的权限
 		$menu_lists = $adminMenu->where('status','<>',0)->get()->toArray();
-
 		$role = DB::table('ulizz_roles')->where('id',session('user_id'))->value('menu_role_id');
-
 		$role = explode(',',$role);
 		if(session('user_id') != 1){
 			foreach($menu_lists as $key => $values){
@@ -35,9 +36,6 @@ class PublicController extends Controller
 				}
 			}
 		}
-		//$menu_lists =_tree_hTree(_tree_sort($menu_lists,'list_order'));
 		$arr = recursionArr($menu_lists);
-		//return json_encode($arr);
-		//p($arr);
 		return ajax_success('获取成功',$arr);
 	}}

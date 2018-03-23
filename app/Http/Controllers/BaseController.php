@@ -49,7 +49,7 @@ class BaseController extends Controller
 			//exit();
 			//视图间共享数据
 			//view()->share('__menu_lists__',$menu_lists);
-			//view()->share('__user_info__',$user_info);
+			view()->share('__user_info__',$user_info);
 
 			return $next($request);
 		});
