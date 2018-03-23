@@ -42,8 +42,8 @@
                             <h4 class="nomargin">Sign In</h4>
                             <p class="mt5 mb20">Login to access your account.</p>
                             <input type="hidden" name="_token"  value="{{csrf_token()}}"/>
-                            <input type="text" class="form-control uname" placeholder="user_login" />
-                            <input type="password" class="form-control pword" placeholder="user_pwd" />
+                            <input type="text" class="form-control uname" placeholder="Username" />
+                            <input type="password" class="form-control pword" placeholder="Password" />
                             <a href=""><small>Forgot Your Password?</small></a>
                             <button class="btn btn-success btn-block" onclick="Loagin();return false;">Sign In</button>
                         </form>

@@ -22,26 +22,26 @@ Route::any('users/logout','UsersController@logout');
 
 //账户管理
 Route::group(['prefix'=>'account'],function() {
-	$controller = 'Account\AccountController@';
-	#账户列表
-	Route::get('lister',$controller.'lister');
-	#添加管理员
-	Route::any('add',$controller.'add');
+   $controller = 'Account\AccountController@';
+   #账户列表
+   Route::get('lister',$controller.'lister');
+   #添加管理员
+   Route::any('add',$controller.'add');
 });
 //角色管理
 Route::group(['prefix'=>'role'],function() {
-	$controller = 'Role\RoleController@';
-	#角色列表
-	Route::get('lister',$controller.'lister');
-	#角色添加
-	Route::any('add',$controller.'add');
+   $controller = 'Role\RoleController@';
+   #角色列表
+   Route::get('lister',$controller.'lister');
+   #角色添加
+   Route::any('add',$controller.'add');
 });
 
 //菜单管理
 Route::group(['prefix'=>'menu'],function() {
-	$controller = 'Menu\MenuController@';
-	#菜单列表页
-	Route::get('lister',$controller.'lister');
-	#菜单添加
-	Route::any('add',$controller.'add');
+   $controller = 'Menu\MenuController@';
+   #菜单列表页
+   Route::get('lister',$controller.'lister');
+   #菜单添加
+   Route::any('add',$controller.'add');
 });
