@@ -76,7 +76,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ asset('images') }}/photos/loggeduser.png" alt="" />
-                        John Doe
+                        {{ $__user_info__['user_nickname'] }}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
