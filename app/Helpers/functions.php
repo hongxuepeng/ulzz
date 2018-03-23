@@ -31,6 +31,8 @@ function ajax_success($msg = '提交成功',$data=array()){
 	$return['data'] = $data;
 	return json_encode($return,JSON_UNESCAPED_UNICODE);
 }
+
+
 /**
  * 分类排序（降序）
  */
