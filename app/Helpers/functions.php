@@ -61,7 +61,16 @@ function _tree_hTree($arr,$pid=0){
 	return isset($data)?$data:array();
 }
 
-
+function recursionArr($arr,$pid = 0) {
+	$array = [];
+	foreach ($arr as $value) {
+		if ($value['parent_id'] == $pid) {
+			$value['child'] = recursionArr($arr,$value['id']);
+			$array[] = $value;
+		}
+	}
+	return $array;
+}
 
 /**
  * 打印调试函数
