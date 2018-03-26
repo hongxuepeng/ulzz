@@ -25,8 +25,8 @@
             <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span set-lan="html:HOME">首页</span></a></li>
             <li class="nav-parent"><a href=""><i class="fa fa-laptop"></i> <span set-lan="html:USER">账号管理</span></a>
                 <ul class="children">
-                    <li><a href="{{ url('account/lister') }}" target="_self"><i class="fa fa-caret-right"></i><span set-lan="html:USER">账号管理</span></a></li>
-                    <li><a href="{{ url('role/lister') }}"><i class="fa fa-caret-right"></i><span set-lan="html:ROLE">角色列表</span></a></li>
+                    <li><a href="" target="_self"><i class="fa fa-caret-right"></i><span set-lan="html:USER">账号管理</span></a></li>
+                    <li><a href=""><i class="fa fa-caret-right"></i><span set-lan="html:ROLE">角色列表</span></a></li>
                 </ul>
             </li>
 
@@ -116,6 +116,7 @@
         </ul>
     </li>
     @{{/each}}
+
 </script>
 <script type="text/javascript">
     $.ajax({
