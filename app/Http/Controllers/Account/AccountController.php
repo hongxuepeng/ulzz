@@ -20,34 +20,56 @@ class AccountController extends BaseController
 	 */
 	public function lister(Request $request)
 	{
-		$userList = Ulizz_user::get()->toArray();
 		if($request->isMethod('post')){
-			return ajax_success('获取成功',$userList);
+			$where = [];
+			if(isset($request->name))
+			{
+				$where[] = ['name','like','%'.$request->name.'%'];
+			}
+			$userList = Ulizz_user::where($where)->get()->toArray();
+			if($userList)
+			{
+				return ajax_success('获取成功',$userList);
+			}else
+			{
+				return ajax_error('获取失败');
+			}
 		}
 		return view('account.lister');
 	}
 
 	/**
 	 * [管理员添加]
-	 * @author 李成龙
+	 * @author 陈绪
 	 * @param   $request
 	 * @return   布尔值 & 重定向到 Account Page
 	 */
 	public function add(Request $request)
 	{
-		$accountAddMsg = 0;
-		if($request->isMethod('post'))
-		{
-			$data = $request->all();
-			$data['user_pwd'] = md5($data['user_pwd']);
-			unset($data['_token'],$data['password2']);
-			$result = Ulizz_user::insert($data);
-			if($result){
-				$accountAddMsg = 1;
+		if($request->isMethod('post')){
+
+			$data = [
+				'sex' => $request->sex,
+				'user_login'=> $request->user_login,
+				'user_pwd' => $request->user_pwd,
+				'user_email' => $request->user_email,
+				'user_nickname' => $request->user_nickname,
+				'remarks' => $request->remarks,
+				'phone' => $request->phone,
+				'role_id' => $request->role_id,
+				'update_time' => time(),
+				'create_time' => time(),
+			];
+			$bool = Ulizz_user::insert($data);
+			if ($bool == true) {
+				return ajax_success('添加成功');
+			} else {
+				return ajax_error('添加失败');
 			}
 		}
-		$role = new Ulizz_roles();
-		$roleOption = $role->recursionGetRole();
-		return view('account.add',['roleOption'=>$roleOption, 'accountAddMsg'=>$accountAddMsg]);
 	}
+
+
+
+
 }
