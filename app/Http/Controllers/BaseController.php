@@ -32,6 +32,7 @@ class BaseController extends Controller
 					}else{
 						if(strtolower($values['controller']) == strtolower($routeActionName[0]) && strtolower($values['action']) == strtolower($routeActionName[1])){
 							$jurisdiction = 1;
+							$url = $values['url'];
 						}
 					}
 				}
