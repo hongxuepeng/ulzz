@@ -13,6 +13,7 @@
 <script src="{{ asset('js') }}/jquery.sparkline.min.js"></script>
 <script src="{{ asset('js') }}/toggles.min.js"></script>
 <script src="{{ asset('js') }}/jquery.cookies.js"></script>
+<script src="{{ asset('js') }}/jquery.session.js"></script>
 <script src="{{ asset('js') }}/flot/jquery.flot.min.js"></script>
 <script src="{{ asset('js') }}/flot/jquery.flot.resize.min.js"></script>
 <script src="{{ asset('js') }}/flot/jquery.flot.spline.min.js"></script>

@@ -92,6 +92,6 @@
 </div><!-- headerbar -->
 <script>
     function CacheCookie(){
-        $.cookie('lan','');
+        $.session.set('lan', '');
     }
 </script>

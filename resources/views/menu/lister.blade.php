@@ -21,18 +21,18 @@
                 @include('tpl.bread')
                 <div class="contentpanel">
                     <div class="operation">
-                        <button class="btn btn-success btn-fold">全部折叠</button>
-                        <button class="btn btn-success btn-open">全部打开</button>
-                        <button class="btn btn-success btn-add">添加菜单</button>
+                        <button class="btn btn-success btn-fold" set-lan="html:ALLFOLD">全部折叠</button>
+                        <button class="btn btn-success btn-open" set-lan="html:ALLOPEN">全部打开</button>
+                        <button class="btn btn-success btn-add" set-lan="html:ADDMENU">添加菜单</button>
                     </div>
                     <div class="menu-content">
                         <div class="menu-list">
                             <div class="menu-list-item menu-list-header">
                                 <div class="menu-list-parent">
-                                    <div class="fold">折叠</div>
+                                    <div class="fold" set-lan="html:FOLD">折叠</div>
                                     <div class="order">ID</div>
-                                    <div class="order">排序</div>
-                                    <div class="width-lg">名称</div>
+                                    <div class="order" set-lan="html:SORT">排序</div>
+                                    <div class="width-lg" set-lan="html:NAME">名称</div>
                                     <div class="width-lg">URL</div>
                                     <div class="fold"></div>
                                 </div>
@@ -46,7 +46,7 @@
                                     <div class="width-lg"><input type="text" class="form-control" value="/"></div>
                                     <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
                                     <div class="fold pull-right">
-                                        <span>删除</span>
+                                        <span set-lan="html:DELETE">删除</span>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     <div class="width-lg"><input type="text" class="form-control" value=""></div>
                                     <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
                                     <div class="fold pull-right">
-                                        <span>删除</span>
+                                        <span set-lan="html:DELETE">删除</span>
                                     </div>
                                 </div>
                                 <div class="menu-list-child">
@@ -71,7 +71,7 @@
                                         <div class="width-lg"><input type="text" class="form-control" value="账号管理"></div>
                                         <div class="width-lg"><input type="text" class="form-control" value="/account/user"></div>
                                         <div class="fold pull-right">
-                                            <span>删除</span>
+                                            <span set-lan="html:DELETE">删除</span>
                                         </div>
                                     </div>
                                     <div class="menu-list-parent">
@@ -82,7 +82,7 @@
                                         <div class="width-lg"><input type="text" class="form-control" value="角色列表"></div>
                                         <div class="width-lg"><input type="text" class="form-control" value="/account/role"></div>
                                         <div class="fold pull-right">
-                                            <span>删除</span>
+                                            <span set-lan="html:DELETE">删除</span>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                                     <div class="width-lg"><input type="text" class="form-control" value=""></div>
                                     <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
                                     <div class="fold pull-right">
-                                        <span>删除</span>
+                                        <span set-lan="html:DELETE">删除</span>
                                     </div>
                                 </div>
                                 <div class="menu-list-child">
@@ -108,7 +108,7 @@
                                         <div class="width-lg"><input type="text" class="form-control" value="菜单列表"></div>
                                         <div class="width-lg"><input type="text" class="form-control" value="/account/user"></div>
                                         <div class="fold pull-right">
-                                            <span>删除</span>
+                                            <span set-lan="html:DELETE">删除</span>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -130,32 +130,32 @@
                     <div class="modal-body">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:TABLENAME">状态:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:State">状态:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:ACCOUNT">菜单排序:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuSort">菜单排序:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:MODALPASSWORD">菜单名称:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder=""  class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:CONTACT">菜单URL:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>                         
                         </form>
                         <div class="add_btn">
-                            <span id="AddMeanuSave" type="add">保存</span>
+                            <span id="AddMeanuSave" set-lan="html:Save">保存</span>
                         </div>
                     </div>
                 </div>
@@ -172,38 +172,38 @@
                     <div class="modal-body">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:TABLENAME">上一级菜单:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:Upper">上一级菜单:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control" disabled="disabled">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:TABLENAME">状态:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:State">状态:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:ACCOUNT">菜单排序:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuSort">菜单排序:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:MODALPASSWORD">菜单名称:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder=""  class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:CONTACT">菜单URL:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>                         
                         </form>
                         <div class="add_btn">
-                            <span id="AddMeanuChildSave" type="add">保存</span>
+                            <span id="AddMeanuChildSave" set-lan="html:Save">保存</span>
                         </div>
                     </div>
                 </div>

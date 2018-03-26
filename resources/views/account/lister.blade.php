@@ -109,9 +109,9 @@
                         <label class="col-sm-3 control-label" set-lan="html:SEX">性别:</label>
                         <div class="col-sm-8">
                             <select class="form-control">
-                                <option value="3">保密</option>
-                                <option value="1">男</option>
-                                <option value="0">女</option>                               
+                                <option value="3" set-lan="html:SECRECY">保密</option>
+                                <option value="1" set-lan="html:MAN">男</option>
+                                <option value="0" set-lan="html:WOMAN">女</option>                               
                             </select>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                     </div>
                 </form>
                 <div class="add_btn">
-                    <span id="AddSave" type="add">保存</span>
+                    <span id="AddSave" set-lan="html:Save">保存</span>
                 </div>
             </div>
         </div>
@@ -144,9 +144,9 @@
         <td set-lan="@{{if $value.user_status=='1'}}html:ENABLEDOPTION@{{else $value.user_status=='0'}}html:DISABLEDOPTION@{{/if}}"></td>
         <td>@{{$value.update_time}}</td>
         <td class="operation">
-            <span class="edit" set-lan="html:EDIT">编辑</span>
+            <span class="edit" set-lan="html:EDIT" EditId="@{{$value.id}}">编辑</span>
             <em class="item-action-split"></em>
-            <span class="delete" set-lan="html:DELETE">删除</span>
+            <span class="delete" set-lan="html:DELETE" EditId="@{{$value.id}}">删除</span>
         </td>
     </tr>
     @{{/each}}

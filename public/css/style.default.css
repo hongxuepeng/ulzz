@@ -4242,7 +4242,7 @@ div.error label.error:before {
 }
 .menu-list{
     padding-top: 20px;
-    min-width: 840px;
+    min-width: 860px;
 }
 .menu-list-item{
     border-bottom: 1px solid #ccc;
@@ -4266,6 +4266,9 @@ div.error label.error:before {
     height: 100%;
     text-align: center;
     padding-top: 5px;
+}
+.fold.pull-right{
+    width: 70px;
 }
 .order {
     width: 90px;
@@ -4311,6 +4314,9 @@ div.error label.error:before {
 }
 .menu-list-child{
     display: none;
+}
+.modal-open{
+    padding-right: 0!important;
 }
 /********** 18. MEDIA QUERIES **********/
 /***************************************/
