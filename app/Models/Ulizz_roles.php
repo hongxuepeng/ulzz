@@ -16,19 +16,17 @@ class Ulizz_roles extends Base
 	 * [递归获取管理员]
 	 * @author 李成龙
 	 * @param    父ID
-	 * @return   拼接的下拉框 option
+	 * @return   Array
 	 */
-	public function recursionGetRole($parent_id = 0, $num = 0) {
-		$optionStr = '';
-		$arr = $this->where('pid', $parent_id)->get();
-		$gang = str_repeat('&nbsp;&nbsp;&nbsp;', $num);
-		$num++;
+	public function recursionArr($pid = 0) {
+		$array = [];
+		$arr = $this->where('pid',$pid)->get();
 		foreach ($arr as $value) {
-			$name = $value->name;
-			$parent_id = $value->id;
-			$optionStr .= "<option value='{$parent_id}'>{$gang}{$name}</option>";
-			$optionStr .= $this->recursionGetRole($parent_id,$num);
+			if ($value->pid == $pid) {
+				$value['child'] = $this->recursionArr($value->id);
+				$array[] = $value;
+			}
 		}
-		return $optionStr;
+		return $array;
 	}
 }

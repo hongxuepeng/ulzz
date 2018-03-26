@@ -12,6 +12,7 @@ use DB;
 use FontLib\Table\Type\name;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Models\Ulizz_roles;
 class PublicController extends Controller
 {
 	/**
@@ -39,5 +40,29 @@ class PublicController extends Controller
 		}
 		$arr = recursionArr($menu_lists);
 		return ajax_success('获取成功',$arr);
+	}
+
+	/**
+	 * [获取角色]
+	 * @author 李成龙
+	 * @param    NULL
+	 * @return   json
+	 */
+	public function getRole()
+	{
+		$role = new Ulizz_roles();
+		$roleArr = $role->recursionArr();
+		return ajax_success('请求成功',$roleArr);
+	}
+
+	/**
+	 * [测试页面]
+	 * @author 李成龙
+	 * @param    NULL
+	 * @return   NULL
+	 */
+	public function test()
+	{
+		return view('test');
 	}
 }
