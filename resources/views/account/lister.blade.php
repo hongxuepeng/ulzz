@@ -25,7 +25,7 @@
                     <select class="form-control leftoption">
                         <option set-lan="html:NAME">名称</option>
                     </select>
-                    <input type="text" class="form-control centerinput">
+                    <input type="text" name="name" class="form-control centerinput">
                     <button class="btn btn-info rightbutton" set-lan="html:SEARCH">搜索</button>
                 </div>
                 <div class="the-header mb10">

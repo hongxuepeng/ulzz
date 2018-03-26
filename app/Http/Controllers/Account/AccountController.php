@@ -20,8 +20,12 @@ class AccountController extends BaseController
 	 */
 	public function lister(Request $request)
 	{
-		$userList = Ulizz_user::get()->toArray();
 		if($request->isMethod('post')){
+			$where = [];
+			if(isset($request->name)){
+				$where[] = ['name','like','%'.$request->name.'%'];
+			}
+			$userList = Ulizz_user::where($where)->get()->toArray();
 			return ajax_success('获取成功',$userList);
 		}
 		return view('account.lister');
