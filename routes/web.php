@@ -11,10 +11,16 @@
 |
 */
 
+//前端测试页面
+Route::any('test','PublicController@test');
+
 Route::get('/','IndexController@index');
 
 //菜单提取
 Route::any('getMenu','PublicController@getMenu');
+
+//角色提取
+Route::any('getRole','PublicController@getRole');
 
 //登录
 Route::any('users/login','UsersController@login');
@@ -27,6 +33,8 @@ Route::group(['prefix'=>'account'],function() {
    Route::any('lister',$controller.'lister');
    #添加管理员
    Route::any('add',$controller.'add');
+   #账户修改
+   Route::any('edit',$controller.'edit');
 });
 //角色管理
 Route::group(['prefix'=>'role'],function() {

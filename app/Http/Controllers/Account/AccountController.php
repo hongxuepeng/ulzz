@@ -22,17 +22,18 @@ class AccountController extends BaseController
 	{
 		if($request->isMethod('post')){
 			$where = [];
-			if(isset($request->name))
+			if(!is_null($request->name))
 			{
-				$where[] = ['name','like','%'.$request->name.'%'];
+				$where[] = ['user_nickname','like','%'.$request->name.'%'];
 			}
 			$userList = Ulizz_user::where($where)->get()->toArray();
 			if($userList)
 			{
 				return ajax_success('获取成功',$userList);
-			}else
+			}
+			else
 			{
-				return ajax_error('获取失败');
+				return ajax_error('获取失败',$userList);
 			}
 		}
 		return view('account.lister');
@@ -70,6 +71,40 @@ class AccountController extends BaseController
 	}
 
 
-
+	/**
+	 * [用户管理员修改]
+	 * @author 李成龙
+	 * @param   ID & $request
+	 * @return   json 状态
+	 */
+	public function edit(Request $request)
+	{
+		$id = $request->id;
+		$userDate = Ulizz_user::find($id);
+		if($request->isMethod('post'))
+		{
+			$data = $request->all();
+			$data['update_time'] = date('Y-m-d H:i:s');
+			if(is_null($data['user_pwd']))
+			{
+				$data['user_pwd'] = $userDate['user_pwd'];
+			}
+			else
+			{
+				$data['user_pwd'] = md5($data['user_pwd']);
+			}
+			unset($data['_token']);
+			$result = Ulizz_user::where('id',$id)->update($data);
+			if($result)
+			{
+				return ajax_success('修改成功');
+			}
+			else
+			{
+				return ajax_error('修改失败');
+			}
+		}
+		return ajax_success('请求成功',$userDate);
+	}
 
 }
