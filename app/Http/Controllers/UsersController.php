@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ulizz_user;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 class UsersController extends Controller
 {
@@ -48,6 +49,7 @@ class UsersController extends Controller
 		}
 		return view('users.login');
 	}
+
 
 	/**
 	 * [用户登出 登出方法]

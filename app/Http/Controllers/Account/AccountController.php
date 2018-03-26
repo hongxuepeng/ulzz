@@ -32,19 +32,26 @@ class AccountController extends BaseController
 	 */
 	public function add(Request $request)
 	{
-		$accountAddMsg = 0;
 		if($request->isMethod('post'))
 		{
 			$data = $request->all();
 			$data['user_pwd'] = md5($data['user_pwd']);
 			unset($data['_token'],$data['password2']);
 			$result = Ulizz_user::insert($data);
-			if($result){
-				$accountAddMsg = 1;
+			if($result == true){
+				return ajax_success('添加成功',$result);
+			}else{
+				exit;
 			}
+
 		}
-		$role = new Ulizz_roles();
-		$roleOption = $role->recursionGetRole();
-		return view('account.add',['roleOption'=>$roleOption, 'accountAddMsg'=>$accountAddMsg]);
 	}
+
+	/**
+	 * 管理员查找
+	 *
+	 */
+
+
+
 }

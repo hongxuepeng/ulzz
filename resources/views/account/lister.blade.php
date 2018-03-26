@@ -222,6 +222,28 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $.ajax({
+        url:"{{url('account/add')}}",
+        type:'POST', //GET
+        async:false,    //或false,是否异步
+        timeout:5000,    //超时时间
+        data:{
+            "_token":"{{csrf_token()}}",
+            "sex":"用户性别",
+            "user_status":"用户状态",
+            "user_login":"用户登录账户",
+            "user_pwd":"用户登录密码"
+        },
+        dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+        success:function(data){
+            console.log(data);
+        },
+        error:function(){
+            console.log('错误')
+        }
+    });
+</script>
 <script>
     $(".common_add,.edit").click(function () {
         $("#AddModal").modal();
