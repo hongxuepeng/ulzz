@@ -8,8 +8,8 @@
             <div class="media userlogged">
                 <img alt="" src="{{ asset('images') }}/photos/loggeduser.png" class="media-object">
                 <div class="media-body">
-                    <h4>John Doe</h4>
-                    <span>"Life is so..."</span>
+                    <h4>{{ $__user_info__['user_nickname'] }}</h4>
+                    <span>{{ $__user_info__['role_id'] }}</span>
                 </div>
             </div>
             <h5 class="sidebartitle actitle">Account</h5>
