@@ -22,11 +22,18 @@ class AccountController extends BaseController
 	{
 		if($request->isMethod('post')){
 			$where = [];
-			if(isset($request->name)){
+			if(isset($request->name))
+			{
 				$where[] = ['name','like','%'.$request->name.'%'];
 			}
 			$userList = Ulizz_user::where($where)->get()->toArray();
-			return ajax_success('获取成功',$userList);
+			if($userList)
+			{
+				return ajax_success('获取成功',$userList);
+			}else
+			{
+				return ajax_error('获取失败');
+			}
 		}
 		return view('account.lister');
 	}
