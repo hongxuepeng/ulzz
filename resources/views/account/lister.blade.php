@@ -69,25 +69,25 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:TABLENAME">名称:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" id="user_nickname">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:ACCOUNT">账号:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" id="user_login">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:MODALPASSWORD">密码:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder=""  class="form-control">
+                            <input type="text" placeholder=""  class="form-control" id="user_pwd">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:ENABLED">启用状态:</label>
                         <div class="col-sm-8">
-                            <select class="form-control">
+                            <select class="form-control" id="user_status">
                                 <option value="1" set-lan="html:ENABLEDOPTION">启用</option>
                                 <option value="0" set-lan="html:DISABLEDOPTION">停用</option>
                             </select>
@@ -96,19 +96,19 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:CONTACT">联系方式:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" id="phone">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:EMAIL">邮箱:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder="" class="form-control" id="user_email">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:SEX">性别:</label>
                         <div class="col-sm-8">
-                            <select class="form-control">
+                            <select class="form-control" id="sex">
                                 <option value="3" set-lan="html:SECRECY">保密</option>
                                 <option value="1" set-lan="html:MAN">男</option>
                                 <option value="0" set-lan="html:WOMAN">女</option>                               
@@ -118,10 +118,15 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:USERROLES">用户角色:</label>
                         <div class="col-sm-8">
-                            <select class="form-control">
-                                <option value="">管理员</option>
+                            <select class="form-control" id="getRole">                                
                                 <option value="">业务员</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:Remarks">备注:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control" id="remarks">
                         </div>
                     </div>
                 </form>
@@ -184,10 +189,14 @@
             timeout:5000,    //超时时间
             data:{"_token":"{{csrf_token()}}"},
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-            success:function(data){
-                console.log(data);
-                if(data.status=="1"){
-                    
+            success:function(result){               
+                if(result.status=="1"){
+                    var html='';
+                    var data=result.data;                    
+                    for(var i=0;i<data.length;i++){
+                        html+='<option value="'+data[i].id+'">'+data[i].name+'</option>';
+                    }
+                    $("#getRole").html(html);
                 }
             },
             error:function(){
@@ -196,6 +205,105 @@
         });  
     }
     RoleList();
+    //添加用户
+    function AddUser(){
+        var user_nickname=$("#user_nickname").val();
+        var user_login=$("#user_login").val();
+        var user_pwd=$("#user_pwd").val();
+        var user_status=$("#user_status").val();
+        var phone=$("#phone").val();
+        var user_email=$("#user_email").val();
+        var sex=$("#sex").val();
+        var role_id=$("#getRole").val();
+        var remarks=$("#remarks").val();
+        if(user_nickname==""){
+            $.toast({
+                heading: 'Error',
+                text: '请输入用户名称',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
+            });
+            $("#user_nickname").addClass("SOGWarming");
+        }else if(user_login==""){
+            $.toast({
+                heading: 'Error',
+                text: '请输入用户账号',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
+            });
+            $("#user_login").addClass("SOGWarming");
+        }else if(user_pwd==""){
+            $.toast({
+                heading: 'Error',
+                text: '请输入用户密码',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
+            });
+            $("#user_pwd").addClass("SOGWarming");
+        }else if(phone==""){
+            $.toast({
+                heading: 'Error',
+                text: '请输入联系方式',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
+            });
+            $("#phone").addClass("SOGWarming");
+        }else if(user_email==""){
+            $.toast({
+                heading: 'Error',
+                text: '请输入邮箱',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
+            });
+            $("#user_email").addClass("SOGWarming");
+        }else if(user_login==""){
+            $.toast({
+                heading: 'Error',
+                text: '请输入用户账号',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
+            });
+            $("#user_login").addClass("SOGWarming");
+        }else{
+            $.ajax({
+                url:"{{url('account/add')}}",
+                type:'POST', //GET
+                async:false,    //或false,是否异步
+                timeout:5000,    //超时时间
+                data:{
+                    "_token":"{{csrf_token()}}",
+                    "sex":sex,
+                    "user_status":user_status,
+                    "user_login":user_login,
+                    "user_pwd":user_pwd,
+                    "user_email":user_email,
+                    "user_nickname":user_nickname,
+                    "remarks":remarks,
+                    "phone":phone,
+                    "role_id":role_id
+                },
+                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success:function(res){
+                    console.log(res);
+                },
+                error:function(){
+                    console.log('错误')
+                }
+            });
+        }        
+    }
     //点击搜素按钮时触发的事件
     $("#SearchBtn").click(function(){
         LoadList();
@@ -208,6 +316,12 @@
     $(".edit").click(function () {
         $("#AddModal").modal();
     });
+    function CacheClass() {
+        $(".form-control").focus(function () {
+            $(this).removeClass("SOGWarming");
+        });
+    }
+    CacheClass();
 </script>
 <script src="{{ asset('js') }}/language.js"></script>
 </body>
