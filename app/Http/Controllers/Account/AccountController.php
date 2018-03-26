@@ -18,10 +18,13 @@ class AccountController extends BaseController
 	 * @param   NULL
 	 * @return   Resources Account Page
 	 */
-	public function lister()
+	public function lister(Request $request)
 	{
 		$userList = Ulizz_user::get()->toArray();
-		return view('account.lister',['userList'=>$userList]);
+		if($request->isMethod('post')){
+			return ajax_success('获取成功',$userList);
+		}
+		return view('account.lister');
 	}
 
 	/**

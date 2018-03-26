@@ -223,6 +223,22 @@
     </div>
 </div>
 <script type="text/javascript">
+            $.ajax({
+                url:"{{url('account/lister')}}",
+                type:'POST', //GET
+                async:false,    //或false,是否异步
+                timeout:5000,    //超时时间
+                data:{"_token":"{{csrf_token()}}"},
+                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success:function(data){
+                    console.log(data);
+                },
+                error:function(){
+                    console.log('错误')
+                }
+            });
+</script>
+<script>
     $.ajax({
         url:"{{url('account/add')}}",
         type:'POST', //GET
@@ -245,6 +261,7 @@
     });
 </script>
 <script>
+
     $(".common_add,.edit").click(function () {
         $("#AddModal").modal();
     });
