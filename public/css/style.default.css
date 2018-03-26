@@ -4230,6 +4230,9 @@ div.error label.error:before {
     border-radius: 3px;
     cursor: pointer;
 }
+.btn{
+    padding: 5px 15px;
+}
 /********** 18. MEDIA QUERIES **********/
 /***************************************/
 
