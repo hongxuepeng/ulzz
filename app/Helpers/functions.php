@@ -171,3 +171,16 @@ function _unsetNull($arr){
 	}else{ $arr = ''; }
 	return $arr;
 }
+
+/**
+ *在权限前面加上空格
+ */
+function showUlzz($arr,$pid=0,$form=""){
+	$form.="&nbsp;&nbsp";
+	foreach($arr as $value){
+		if($value['pid']==$pid){
+			echo "<option value='{$value['id']}'>".$form.$value['cname']."</option>";
+			showCategory($arr,$value['id'],$form);
+		}
+	}
+}
