@@ -171,7 +171,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label" set-lan="html:MODALPASSWORD">密码:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control">
+                            <input type="text" placeholder=""  class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
@@ -223,23 +223,26 @@
     </div>
 </div>
 <script type="text/javascript">
-            $.ajax({
-                url:"{{url('account/lister')}}",
-                type:'POST', //GET
-                async:false,    //或false,是否异步
-                timeout:5000,    //超时时间
-                data:{"_token":"{{csrf_token()}}"},
-                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                success:function(data){
-                    console.log(data);
-                },
-                error:function(){
-                    console.log('错误')
-                }
-            });
+    function LoadList(){
+        var name=$(".")
+        $.ajax({
+            url:"{{url('account/lister')}}",
+            type:'POST', //GET
+            async:false,    //或false,是否异步
+            timeout:5000,    //超时时间
+            data:{"_token":"{{csrf_token()}}","name":name},
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(data){
+                console.log(data);
+            },
+            error:function(){
+                console.log('错误');
+            }
+        });  
+    }
+    LoadList()      
 </script>
 <script>
-
     $(".common_add,.edit").click(function () {
         $("#AddModal").modal();
     });

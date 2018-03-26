@@ -3,7 +3,6 @@
         <i class="fa fa-home"></i>
         <strong set-lan="">{{ $__parent_menu__->name or '' }}</strong>{{--PHP语法--}}
         <b><span>{{ $__current_menu__->name or '' }}</span></b>{{--PHP语法--}}
-        <span set-lan="html:COMPANY">华世恒通</span>
     </h2>
     <div class="breadcrumb-wrapper">
         <ol class="breadcrumb">
