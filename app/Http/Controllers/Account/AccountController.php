@@ -29,13 +29,14 @@ class AccountController extends BaseController
 
 	/**
 	 * [管理员添加]
-	 * @author 李成龙
+	 * @author 陈绪
 	 * @param   $request
 	 * @return   布尔值 & 重定向到 Account Page
 	 */
 	public function add(Request $request)
 	{
 		if($request->isMethod('post')){
+
 			$data = [
 				'sex' => $request->sex,
 				'user_login'=> $request->user_login,
