@@ -24,7 +24,7 @@ Route::any('users/logout','UsersController@logout');
 Route::group(['prefix'=>'account'],function() {
    $controller = 'Account\AccountController@';
    #账户列表
-   Route::get('lister',$controller.'lister');
+   Route::any('lister',$controller.'lister');
    #添加管理员
    Route::any('add',$controller.'add');
 });
