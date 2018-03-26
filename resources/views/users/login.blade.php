@@ -65,6 +65,7 @@
         <script src="{{ asset('js/modernizr.min.js') }}"></script>
         <script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
         <script src="{{ asset('js/jquery.cookies.js') }}"></script>
+        <script src="{{ asset('js/jquery.session.js') }}"></script>
         <script src="{{ asset('js/toggles.min.js') }}"></script>
         <script src="{{ asset('js/retina.min.js') }}"></script>
         <script src="{{ asset('js/jquery.toast.js') }}"></script>
@@ -113,7 +114,7 @@
                 }else{
                     $.post("{{url('users/login')}}",data,function(msg){
                         if(msg.status == 1){
-                            $.cookie('lan','cn');
+                            $.session.set('lan','cn');
                             location.href = "{{ asset('/') }}";
                         }else{
                             $.toast({
