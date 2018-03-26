@@ -25,8 +25,8 @@
                     <select class="form-control leftoption">
                         <option set-lan="html:NAME">名称</option>
                     </select>
-                    <input type="text" name="name" class="form-control centerinput">
-                    <button class="btn btn-info rightbutton" set-lan="html:SEARCH">搜索</button>
+                    <input type="text" name="name" class="form-control centerinput" id="NameSearch">
+                    <button class="btn btn-info rightbutton" set-lan="html:SEARCH" id="SearchBtn">搜索</button>
                 </div>
                 <div class="the-header mb10">
                     <span set-lan="html:HEADERLIST">业务人员列表</span>
@@ -224,7 +224,7 @@
 </div>
 <script type="text/javascript">
     function LoadList(){
-        var name=$(".")
+        var name=$("#NameSearch").val();
         $.ajax({
             url:"{{url('account/lister')}}",
             type:'POST', //GET
@@ -240,9 +240,10 @@
             }
         });  
     }
-    LoadList()      
-
-
+    LoadList();
+    $("#SearchBtn").click(function(){
+        LoadList();
+    });    
     $(".common_add,.edit").click(function () {
         $("#AddModal").modal();
     });
