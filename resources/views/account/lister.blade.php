@@ -249,7 +249,13 @@
             "sex":"用户性别",
             "user_status":"用户状态",
             "user_login":"用户登录账户",
-            "user_pwd":"用户登录密码"
+            "user_pwd":"用户登录密码",
+            "user_email":"用户邮箱",
+            "user_nickname":"用户昵称",
+            "user_avatar":"用户头像",
+            "remarks":"备注",
+            "phone":"电话号码",
+            "role_id":"角色ID"
         },
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){

@@ -35,25 +35,28 @@ class AccountController extends BaseController
 	 */
 	public function add(Request $request)
 	{
-		if($request->isMethod('post'))
-		{
-			$data = $request->all();
-			$data['user_pwd'] = md5($data['user_pwd']);
-			unset($data['_token'],$data['password2']);
-			$result = Ulizz_user::insert($data);
-			if($result == true){
-				return ajax_success('添加成功',$result);
-			}else{
-				exit;
+		if($request->isMethod('post')){
+			$data = [
+				'sex' => $request->sex,
+				'user_login'=> $request->user_login,
+				'user_pwd' => $request->user_pwd,
+				'user_email' => $request->user_email,
+				'user_nickname' => $request->user_nickname,
+				'remarks' => $request->remarks,
+				'phone' => $request->phone,
+				'role_id' => $request->role_id,
+				'update_time' => time(),
+				'create_time' => time(),
+			];
+			$bool = Ulizz_user::insert($data);
+			if ($bool == true) {
+				return ajax_success('添加成功');
+			} else {
+				return ajax_error('添加失败');
 			}
-
 		}
 	}
 
-	/**
-	 * 管理员查找
-	 *
-	 */
 
 
 
