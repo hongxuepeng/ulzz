@@ -126,7 +126,6 @@ function BindLanguage() {
         //如果所选语言的json中没有此内容就选取其他语言显示
         if(t==undefined) t = cn[m];
         if(t==undefined) t = en[m];
-
         if(t==undefined) return true;   //如果还是没有就跳出
 
         //文字放置位置有（html,val等，可以自己添加）

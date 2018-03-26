@@ -20,7 +20,7 @@
                 <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>退出登录</span></a></li>
             </ul>
         </div>
-        <h5 class="sidebartitle" set-lan="html:Navigation">Navigation</h5>
+        <h5 class="sidebartitle" set-lan="html:NAVIGATION">导航</h5>
         <ul class="nav nav-pills nav-stacked nav-bracket" id="NavMeau">
             <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span set-lan="html:HOME">首页</span></a></li>
             <li class="nav-parent"><a href=""><i class="fa fa-laptop"></i> <span set-lan="html:USER">账号管理</span></a>
@@ -116,7 +116,6 @@
         </ul>
     </li>
     @{{/each}}
-
 </script>
 <script type="text/javascript">
     $.ajax({
