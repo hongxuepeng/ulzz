@@ -172,6 +172,12 @@
                     <div class="modal-body">
                         <form class="form-horizontal">
                             <div class="form-group">
+                                <label class="col-sm-3 control-label" set-lan="html:TABLENAME">上一级菜单:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label" set-lan="html:TABLENAME">状态:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
@@ -230,4 +236,5 @@
             $("#AddMenuChildModal").modal();
         });
     </script>
+    <script src="{{ asset('js') }}/language.js"></script>
 </html>
