@@ -42,15 +42,7 @@ class BaseController extends Controller
 			if($jurisdiction != 1 && strtolower($routeActionName[0]) != 'index' && strtolower($routeActionName[1]) != 'index'){
 				return redirect('/');
 			}
-			//$menu_lists =_tree_hTree(_tree_sort($menu_lists,'list_order'));
-			//$menu_lists = json_encode($menu_lists,JSON_UNESCAPED_UNICODE);
-			//echo '<pre>';
-			//var_dump($menu_lists);
-			//exit();
-			//视图间共享数据
-			//view()->share('__menu_lists__',$menu_lists);
 			view()->share('__user_info__',$user_info);
-
 			return $next($request);
 		});
 	}

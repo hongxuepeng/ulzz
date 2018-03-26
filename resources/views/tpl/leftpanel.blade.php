@@ -111,12 +111,11 @@
     <li class="nav-parent"><a href="javascript:void(0)"><i class="fa @{{$value.icon}}"></i> <span>@{{$value.name}}</span></a>
         <ul class="children">
             @{{each $value.child as child index}}
-            <li><a href="@{{child.url}}" target="_self"><i class="fa fa-caret-right"></i><span>@{{child.name}}</span></a></li>
+            <li><a href="{!! url('@{{child.url}}') !!}" target="_self"><i class="fa fa-caret-right"></i><span>@{{child.name}}</span></a></li>
             @{{/each}}
         </ul>
     </li>
     @{{/each}}
-
 </script>
 <script type="text/javascript">
     $.ajax({
