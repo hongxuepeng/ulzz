@@ -24,5 +24,6 @@
             </div><!-- mainpanel -->
         </section>
         @include('tpl.CommonBottom')
+        <script src="{{ asset('js') }}/language.js"></script>
     </body>
 </html>

@@ -40,104 +40,14 @@
                             <th set-lan="html:TABLENAME">名称</th>
                             <th set-lan="html:ACCOUNT">账号</th>
                             <th set-lan="html:USERROLES">用户角色</th>
-                            <th set-lan="html:AREA">区域</th>
+                            <th set-lan="html:SEX">性别</th>
                             <th set-lan="html:CONTACT">联系方式</th>
                             <th set-lan="html:ENABLED">启用状态</th>
                             <th set-lan="html:CREATE">创建时间</th>
                             <th set-lan="html:OPERATION">操作</th>
                         </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>admin</td>
-                                <td>root</td>
-                                <td>管理员</td>
-                                <td>广东</td>
-                                <td>18025330961</td>
-                                <td set-lan="html:ENABLEDOPTION">启用</td>
-                                <td>2017-12-15 12:29:45</td>
-                                <td class="operation">
-                                    <span class="edit" set-lan="html:EDIT">编辑</span>
-                                    <em class="item-action-split"></em>
-                                    <span class="delete" set-lan="html:DELETE">删除</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>张三</td>
-                                <td>zhangsan</td>
-                                <td>业务员</td>
-                                <td>广东</td>
-                                <td>18025330961</td>
-                                <td set-lan="html:ENABLEDOPTION">启用</td>
-                                <td>2017-12-15 12:29:45</td>
-                                <td class="operation">
-                                    <span class="edit" set-lan="html:EDIT">编辑</span>
-                                    <em class="item-action-split"></em>
-                                    <span class="delete" set-lan="html:DELETE">删除</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>lisi</td>
-                                <td>root</td>
-                                <td>管理员</td>
-                                <td>广东</td>
-                                <td>18025330961</td>
-                                <td set-lan="html:ENABLEDOPTION">启用</td>
-                                <td>2017-12-15 12:29:45</td>
-                                <td class="operation">
-                                    <span class="edit" set-lan="html:EDIT">编辑</span>
-                                    <em class="item-action-split"></em>
-                                    <span class="delete" set-lan="html:DELETE">删除</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>admin</td>
-                                <td>root</td>
-                                <td>管理员</td>
-                                <td>广东</td>
-                                <td>18025330961</td>
-                                <td set-lan="html:ENABLEDOPTION">启用</td>
-                                <td>2017-12-15 12:29:45</td>
-                                <td class="operation">
-                                    <span class="edit" set-lan="html:EDIT">编辑</span>
-                                    <em class="item-action-split"></em>
-                                    <span class="delete" set-lan="html:DELETE">删除</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>张三</td>
-                                <td>zhangsan</td>
-                                <td>业务员</td>
-                                <td>广东</td>
-                                <td>18025330961</td>
-                                <td set-lan="html:ENABLEDOPTION">启用</td>
-                                <td>2017-12-15 12:29:45</td>
-                                <td class="operation">
-                                    <span class="edit" set-lan="html:EDIT">编辑</span>
-                                    <em class="item-action-split"></em>
-                                    <span class="delete" set-lan="html:DELETE">删除</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>lisi</td>
-                                <td>root</td>
-                                <td>管理员</td>
-                                <td>广东</td>
-                                <td>18025330961</td>
-                                <td set-lan="html:ENABLEDOPTION">启用</td>
-                                <td>2017-12-15 12:29:45</td>
-                                <td class="operation">
-                                    <span class="edit" set-lan="html:EDIT">编辑</span>
-                                    <em class="item-action-split"></em>
-                                    <span class="delete" set-lan="html:DELETE">删除</span>
-                                </td>
-                            </tr>
+                        <tbody id="UserList">                          
                         </tbody>
                     </table>
                 </div><!-- table-responsive -->
@@ -196,12 +106,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:AREA">区域:</label>
+                        <label class="col-sm-3 control-label" set-lan="html:SEX">性别:</label>
                         <div class="col-sm-8">
                             <select class="form-control">
-                                <option value="">广东</option>
-                                <option value="">浙江</option>
-                                <option value="">江苏</option>
+                                <option value="3" set-lan="html:SECRECY">保密</option>
+                                <option value="1" set-lan="html:MAN">男</option>
+                                <option value="0" set-lan="html:WOMAN">女</option>                               
                             </select>
                         </div>
                     </div>
@@ -216,13 +126,33 @@
                     </div>
                 </form>
                 <div class="add_btn">
-                    <span id="AddSave" type="add">保存</span>
+                    <span id="AddSave" set-lan="html:Save">保存</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script type="text/html" id="UserHtml">
+    @{{each data}}
+    <tr>
+        <td><input type="checkbox"></td>
+        <td>@{{$value.user_nickname}}</td>
+        <td>@{{$value.user_login}}</td>
+        <td>@{{$value.role_id}}</td>
+        <td>@{{if $value.sex=='1'}}男@{{else if $value.sex=='0'}}女@{{else}}保密@{{/if}}</td>
+        <td>@{{$value.phone}}</td>
+        <td set-lan="@{{if $value.user_status=='1'}}html:ENABLEDOPTION@{{else $value.user_status=='0'}}html:DISABLEDOPTION@{{/if}}"></td>
+        <td>@{{$value.update_time}}</td>
+        <td class="operation">
+            <span class="edit" set-lan="html:EDIT" EditId="@{{$value.id}}">编辑</span>
+            <em class="item-action-split"></em>
+            <span class="delete" set-lan="html:DELETE" EditId="@{{$value.id}}">删除</span>
+        </td>
+    </tr>
+    @{{/each}}
+</script>
 <script type="text/javascript">
+    //人员列表绑定
     function LoadList(){
         var name=$("#NameSearch").val();
         $.ajax({
@@ -233,7 +163,11 @@
             data:{"_token":"{{csrf_token()}}","name":name},
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             success:function(data){
-                console.log(data);
+                //console.log(data);
+                if(data.status=="1"){
+                    var UserHtml = template('UserHtml', data);
+                    $("#UserList").html(UserHtml);
+                }
             },
             error:function(){
                 console.log('错误');
@@ -241,12 +175,40 @@
         });  
     }
     LoadList();
+    //绑定角色列表
+    function RoleList(){
+        $.ajax({
+            url:"{{url('getRole')}}",
+            type:'POST', //GET
+            async:false,    //或false,是否异步
+            timeout:5000,    //超时时间
+            data:{"_token":"{{csrf_token()}}"},
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(data){
+                console.log(data);
+                if(data.status=="1"){
+                    
+                }
+            },
+            error:function(){
+                console.log('错误');
+            }
+        });  
+    }
+    RoleList();
+    //点击搜素按钮时触发的事件
     $("#SearchBtn").click(function(){
         LoadList();
     });    
-    $(".common_add,.edit").click(function () {
+    //点击添加按钮时触发的事件
+    $(".common_add").click(function () {
+        $("#AddModal").modal();
+    });
+    //点击编辑按钮时触发的事件
+    $(".edit").click(function () {
         $("#AddModal").modal();
     });
 </script>
+<script src="{{ asset('js') }}/language.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 function language() {
     $("#language-switch>li").click(function () {
-        var lan = $.cookie('lan');
+        var lan = $.session.get('lan');
         var type = $(this).attr("type");
         if(lan != type){
-            $.cookie('lan',type);
+             $.session.set('lan',type);
             location.reload();
         }
     })

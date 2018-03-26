@@ -31,7 +31,7 @@ var cn = {
     "TABLENAME" : "名称",
     "ACCOUNT" : "账号",
     "USERROLES" : "用户角色",
-    "AREA" : "区域",
+    "SEX" : "性别",
     "CONTACT" : "联系方式",
     "ENABLED" : "启用状态",
     "CREATE" : "创建时间",
@@ -48,7 +48,21 @@ var cn = {
     "ORDERMANAGE" : "订单管理",
     "DATAREPORT" : "数据报表",
     "USERFEEKBACK" : "用户反馈",
-    "HELPHANDBOOK" : "帮助手册"
+    "HELPHANDBOOK" : "帮助手册",
+    "ALLFOLD": "全部折叠",
+    "ALLOPEN": "全部打开",
+    "ADDMENU": "添加菜单",
+    "FOLD": "折叠",
+    "SORT": "排序",
+    "Upper": "上一级菜单",
+    "State": "状态",
+    "MenuSort": "菜单排序",
+    "MenuName": "菜单名称",
+    "MenuURL": "菜单URL",
+    "Save": "保存",
+    "SECRECY": "保密",
+    "MAN": "男",
+    "WOMAN": "女"    
 };
 var en = {
     "HEADER" : "Ulzz Rental",
@@ -83,7 +97,7 @@ var en = {
     "TABLENAME" : "Name",
     "ACCOUNT" : "Account",
     "USERROLES" : "User roles",
-    "AREA" : "Area",
+    "SEX" : "Sex",
     "CONTACT" : "Contact",
     "ENABLED" : "Enabled state",
     "CREATE" : "Creation time",
@@ -100,7 +114,21 @@ var en = {
     "ORDERMANAGE" : "Order management",
     "DATAREPORT" : "Data report",
     "USERFEEKBACK" : "User feedback",
-    "HELPHANDBOOK" : "Help Handbook"
+    "HELPHANDBOOK" : "Help Handbook",
+    "ALLFOLD": "All folding",
+    "ALLOPEN": "All open",
+    "ADDMENU": "Add menu",
+    "FOLD": "folding",
+    "SORT": "The sorting",
+    "Upper": "Upper level menu",
+    "State": "State",
+    "MenuSort": "Menu sort",
+    "MenuName": "Menu name",
+    "MenuURL": "Menu URL",
+    "Save": "Save",
+    "SECRECY": "Secrecy",
+    "MAN": "Male",
+    "WOMAN": "Female"    
 };
 function BindLanguage() {
     $('[set-lan]').each(function(){
@@ -110,7 +138,7 @@ function BindLanguage() {
         var m = a[1];   //文字的标识
 
         //用户选择语言后保存在cookie中，这里读取cookie中的语言版本
-        var lan = $.cookie('lan');
+        var lan = $.session.get('lan');
         //选取语言文字
         switch(lan){
             case 'cn':
