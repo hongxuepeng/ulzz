@@ -485,7 +485,6 @@
             }
         });
     }
-    //单个删除
     $(".common_delete").click(function(){
         var length = $("#UserList").find("input[type='checkbox']:checked").length;         
         if(length<1){
