@@ -108,7 +108,7 @@
 </div><!-- leftpanel -->
 <script type="text/html" id="menu">
     @{{each data}}
-    @{{if $value.child=="[]"}}
+    @{{if $value.child==""}}
     <li class="@{{if $value.active=='1'}}active@{{/if}}"><a href="{!! url('@{{$value.url}}') !!}"><i class="fa fa-home"></i> <span>@{{$value.name}}</span></a></li>
     @{{else}}
     <li class="nav-parent @{{if $value.active=='1'}}nav-active active@{{/if}}">
