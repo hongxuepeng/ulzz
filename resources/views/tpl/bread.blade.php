@@ -11,3 +11,27 @@
         </ol>
     </div>
 </div>
+<script type="text/javascript">
+    function GetBread(){
+        var lan = $.session.get('lan');
+        var MenuId=$(".GetMenuId").attr("menuid");
+        $.ajax({
+            url:"{{url('currentMenu')}}",
+            type:'POST', //GET
+            async:false,    //或false,是否异步
+            timeout:5000,    //超时时间
+            data:{"_token":"{{csrf_token()}}","lan":lan,"MenuId":MenuId},
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(res){     
+                console.log(res);
+                if(res.status=="1"){
+                    
+                }
+            },
+            error:function(){
+                console.log('错误');
+            }
+        });  
+    }
+    GetBread();
+</script>
