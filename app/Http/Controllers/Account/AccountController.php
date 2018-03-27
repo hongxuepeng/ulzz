@@ -10,6 +10,7 @@ use App\Http\Controllers\BaseController;
 use App\Models\Ulizz_user;
 use App\Models\Ulizz_roles;
 use Illuminate\Http\Request;
+use DB;
 class AccountController extends BaseController
 {
 	/**
@@ -26,7 +27,10 @@ class AccountController extends BaseController
 			{
 				$where[] = ['user_nickname','like','%'.$request->name.'%'];
 			}
-			$userList = Ulizz_user::where($where)->get()->toArray();
+			$userList = Ulizz_user::where($where)->get();
+			foreach($userList as &$value){
+				$value->parse_role_id = DB::table('ulizz_roles')->where('id',$value->role_id)->value('name');
+			}
 			if($userList)
 			{
 				return ajax_success('获取成功',$userList);

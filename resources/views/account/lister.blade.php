@@ -10,6 +10,7 @@
     @include('tpl.CommonJs')
 </head>
 <body>
+<input type="hidden" id="EditID">
 <!-- Preloader -->
 <div id="preloader">
     <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
@@ -30,22 +31,23 @@
                 </div>
                 <div class="the-header mb10">
                     <span set-lan="html:HEADERLIST">业务人员列表</span>
+                    <small class="common_delete"></small>
                     <small class="common_add"></small>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-primary table-striped mb30">
+                    <table class="table table-primary table-striped mb30" id="UserTable">
                         <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th set-lan="html:TABLENAME">名称</th>
-                            <th set-lan="html:ACCOUNT">账号</th>
-                            <th set-lan="html:USERROLES">用户角色</th>
-                            <th set-lan="html:SEX">性别</th>
-                            <th set-lan="html:CONTACT">联系方式</th>
-                            <th set-lan="html:ENABLED">启用状态</th>
-                            <th set-lan="html:CREATE">创建时间</th>
-                            <th set-lan="html:OPERATION">操作</th>
-                        </tr>
+                            <tr>
+                                <th><input type="checkbox" class="check-control"></th>
+                                <th set-lan="html:TABLENAME">名称</th>
+                                <th set-lan="html:ACCOUNT">账号</th>
+                                <th set-lan="html:USERROLES">用户角色</th>
+                                <th set-lan="html:SEX">性别</th>
+                                <th set-lan="html:CONTACT">联系方式</th>
+                                <th set-lan="html:ENABLED">启用状态</th>
+                                <th set-lan="html:CREATE">创建时间</th>
+                                <th set-lan="html:OPERATION">操作</th>
+                            </tr>
                         </thead>
                         <tbody id="UserList">                          
                         </tbody>
@@ -76,12 +78,6 @@
                         <label class="col-sm-3 control-label" set-lan="html:ACCOUNT">账号:</label>
                         <div class="col-sm-8">
                             <input type="text" placeholder="" class="form-control" id="user_login">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:MODALPASSWORD">密码:</label>
-                        <div class="col-sm-8">
-                            <input type="text" placeholder=""  class="form-control" id="user_pwd">
                         </div>
                     </div>
                     <div class="form-group">
@@ -139,11 +135,11 @@
 </div>
 <script type="text/html" id="UserHtml">
     @{{each data}}
-    <tr>
+    <tr user-id="@{{$value.id}}">
         <td><input type="checkbox"></td>
         <td>@{{$value.user_nickname}}</td>
         <td>@{{$value.user_login}}</td>
-        <td>@{{$value.role_id}}</td>
+        <td>@{{$value.parse_role_id}}</td>
         <td>@{{if $value.sex=='1'}}男@{{else if $value.sex=='0'}}女@{{else}}保密@{{/if}}</td>
         <td>@{{$value.phone}}</td>
         <td set-lan="@{{if $value.user_status=='1'}}html:ENABLEDOPTION@{{else $value.user_status=='0'}}html:DISABLEDOPTION@{{/if}}"></td>
@@ -205,11 +201,10 @@
         });  
     }
     RoleList();
-    //添加用户
+    //添加以及编辑用户信息
     function AddUser(){
         var user_nickname=$("#user_nickname").val();
         var user_login=$("#user_login").val();
-        var user_pwd=$("#user_pwd").val();
         var user_status=$("#user_status").val();
         var phone=$("#phone").val();
         var user_email=$("#user_email").val();
@@ -236,16 +231,16 @@
                 hideAfter: 1500
             });
             $("#user_login").addClass("SOGWarming");
-        }else if(user_pwd==""){
+        }else if(user_status==""||user_status==undefined||user_status==null){
             $.toast({
                 heading: 'Error',
-                text: '请输入用户密码',
+                text: '请选择启用状态',
                 showHideTransition: 'slide',
                 position: 'top-right',
                 icon: 'error',
                 hideAfter: 1500
             });
-            $("#user_pwd").addClass("SOGWarming");
+            $("#user_status").addClass("SOGWarming");
         }else if(phone==""){
             $.toast({
                 heading: 'Error',
@@ -266,54 +261,172 @@
                 hideAfter: 1500
             });
             $("#user_email").addClass("SOGWarming");
-        }else if(user_login==""){
+        }else if(sex==""||sex==undefined||sex==null){
             $.toast({
                 heading: 'Error',
-                text: '请输入用户账号',
+                text: '请选择性别',
                 showHideTransition: 'slide',
                 position: 'top-right',
                 icon: 'error',
                 hideAfter: 1500
             });
-            $("#user_login").addClass("SOGWarming");
-        }else{
-            $.ajax({
-                url:"{{url('account/add')}}",
-                type:'POST', //GET
-                async:false,    //或false,是否异步
-                timeout:5000,    //超时时间
-                data:{
-                    "_token":"{{csrf_token()}}",
-                    "sex":sex,
-                    "user_status":user_status,
-                    "user_login":user_login,
-                    "user_pwd":user_pwd,
-                    "user_email":user_email,
-                    "user_nickname":user_nickname,
-                    "remarks":remarks,
-                    "phone":phone,
-                    "role_id":role_id
-                },
-                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-                success:function(res){
-                    console.log(res);
-                },
-                error:function(){
-                    console.log('错误')
-                }
+            $("#sex").addClass("SOGWarming");
+        }else if(role_id==""||role_id==undefined||role_id==null){
+            $.toast({
+                heading: 'Error',
+                text: '请选择用户角色',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 1500
             });
+            $("#getRole").addClass("SOGWarming");
+        }else{
+            var type=$("#AddSave").attr("type");
+            if(type=="add"){
+                $.ajax({
+                    url:"{{url('account/add')}}",
+                    type:'POST', //GET
+                    async:false,    //或false,是否异步
+                    timeout:5000,    //超时时间
+                    data:{
+                        "_token":"{{csrf_token()}}",
+                        "sex":sex,
+                        "user_status":user_status,
+                        "user_login":user_login,
+                        "user_email":user_email,
+                        "user_nickname":user_nickname,
+                        "remarks":remarks,
+                        "phone":phone,
+                        "role_id":role_id
+                    },
+                    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success:function(res){
+                        if(res.status=="1"){
+                            $.toast({
+                                heading: 'Success',
+                                text: res.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'success',
+                                hideAfter: 1500
+                            });  
+                            LoadList();                      
+                            $("#AddModal").modal('hide');
+                        }else{
+                            $.toast({
+                                heading: 'Error',
+                                text: res.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'error',
+                                hideAfter: 1500
+                            });
+                        }
+                    },
+                    error:function(){
+                        console.log('错误')
+                    }
+                });
+            }else{
+                $.ajax({
+                    url:"{{url('account/edit')}}",
+                    type:'POST', //GET
+                    async:false,    //或false,是否异步
+                    timeout:5000,    //超时时间
+                    data:{
+                        "_token":"{{csrf_token()}}",
+                        "sex":sex,
+                        "user_status":user_status,
+                        "user_login":user_login,
+                        "user_email":user_email,
+                        "user_nickname":user_nickname,
+                        "remarks":remarks,
+                        "phone":phone,
+                        "role_id":role_id,
+                        "id":$("#EditID").val()
+                    },
+                    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success:function(res){
+                        if(res.status=="1"){
+                            $.toast({
+                                heading: 'Success',
+                                text: res.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'success',
+                                hideAfter: 1500
+                            });  
+                            LoadList();                      
+                            $("#AddModal").modal('hide');
+                        }else{
+                            $.toast({
+                                heading: 'Error',
+                                text: res.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'error',
+                                hideAfter: 1500
+                            });
+                        }
+                    },
+                    error:function(){
+                        console.log('错误')
+                    }
+                });
+            }           
         }        
     }
+    $("#AddSave").click(AddUser);
     //点击搜素按钮时触发的事件
     $("#SearchBtn").click(function(){
         LoadList();
     });    
     //点击添加按钮时触发的事件
     $(".common_add").click(function () {
+        $("#AddSave").attr("type","add");
+        $("#AddModal .form-control").val("");
         $("#AddModal").modal();
     });
     //点击编辑按钮时触发的事件
-    $(".edit").click(function () {
+    $(document).on('click','.edit',function () {
+        var ListID=$(this).attr("editid");
+        $("#EditID").val(ListID);
+        $("#AddSave").attr("type","edit");
+        $.ajax({
+            url:"{{url('account/edit')}}",
+            type:'GET', //GET
+            async:false,    //或false,是否异步
+            timeout:5000,    //超时时间
+            data:{"_token":"{{csrf_token()}}","id":ListID},
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(res){               
+                if(res.status=="1"){
+                    //console.log(res);
+                    var data=res.data;
+                    $("#user_nickname").val(data.user_nickname);
+                    $("#user_login").val(data.user_login);
+                    $("#user_status").val(data.user_status);
+                    $("#phone").val(data.phone);
+                    $("#user_email").val(data.user_email);
+                    $("#sex").val(data.sex);
+                    $("#getRole").val(data.role_id);
+                    $("#remarks").val(data.remarks);
+                }else{
+                    $.toast({
+                        heading: 'Error',
+                        text: res.info,
+                        showHideTransition: 'slide',
+                        position: 'top-right',
+                        icon: 'error',
+                        hideAfter: 1500
+                    });
+                }
+            },
+            error:function(){
+                console.log('错误');
+            }
+        });  
         $("#AddModal").modal();
     });
     function CacheClass() {
@@ -322,6 +435,84 @@
         });
     }
     CacheClass();
+    function CheckControl(){
+        $(".check-control").on('change',function(){
+            if ($(this).is(":checked")) {
+                $("#UserTable tbody input[type=checkbox]").prop('checked', true);
+            } else {
+                $("#UserTable tbody input[type=checkbox]").prop('checked', false);
+            }
+        });
+    }
+    CheckControl();
+    //批量删除人员
+    function Batch(ids){
+        $.ajax({
+            url:"{{url('account/batch')}}",
+            type:'GET', //GET
+            async:false,    //或false,是否异步
+            timeout:5000,    //超时时间
+            data:{
+                "_token":"{{csrf_token()}}",
+                "ids":ids
+            },
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(res){
+                console.log(res);
+                if(res.status=="1"){
+                    $.toast({
+                        heading: 'Success',
+                        text: res.info,
+                        showHideTransition: 'slide',
+                        position: 'top-right',
+                        icon: 'success',
+                        hideAfter: 2000
+                    });
+                    LoadList();
+                }else{
+                    $.toast({
+                        heading: 'Error',
+                        text: res.info,
+                        showHideTransition: 'slide',
+                        position: 'top-right',
+                        icon: 'error',
+                        hideAfter: 2000
+                    });
+                }
+            },
+            error:function(){
+                console.log('错误');
+            }
+        });
+    }
+    //单个删除
+    $(".common_delete").click(function(){
+        var length = $("#UserList").find("input[type='checkbox']:checked").length;         
+        if(length<1){
+            $.toast({
+                heading: 'Error',
+                text: "请选择要删除的人员",
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 2000
+            });
+        }else{
+            if(confirm("确定要删除吗？")){   
+                var ids = new Array();
+                $("#UserList").find("input[type='checkbox']:checked").each(function () {
+                    ids.push($(this).parents("tr").attr("user-id"));               
+                });
+                Batch(ids); 
+            }            
+        }
+    });
+    $(document).on('click','.operation>.delete',function(){
+        if(confirm("确定要删除吗？")){  
+            var ids=$(this).attr("editid");
+            Batch(ids);
+        }
+    });
 </script>
 
 <script src="{{ asset('js') }}/language.js"></script>
