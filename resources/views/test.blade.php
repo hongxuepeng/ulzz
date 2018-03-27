@@ -461,7 +461,7 @@
             },
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             success:function(res){
-                console.log(res);
+                //console.log(res);
                 if(res.status=="1"){
                     $.toast({
                         heading: 'Success',
