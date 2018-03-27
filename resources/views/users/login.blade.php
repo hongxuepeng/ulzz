@@ -113,10 +113,9 @@
                     $(".pword").addClass("SOGWarming");
                 }else{
                     $.post("{{url('users/login')}}",data,function(msg){
-                        console.log(msg);
                         if(msg.status == 1){
                             $.session.set('lan','cn');
-                            //location.href = "{{ asset('/') }}";
+                            location.href = "{{ asset('/') }}";
                         }else{
                             $.toast({
                                 heading: 'Error',
