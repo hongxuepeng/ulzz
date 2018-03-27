@@ -55,6 +55,7 @@ class BaseController extends Controller
 					view()->share('__parent_menu__',$parent_menu);
 				}
 			}
+
 			if($jurisdiction != 1 && strtolower($routeActionName[0]) != 'index' && strtolower($routeActionName[1]) != 'index'){
 				return redirect('/');
 			}
