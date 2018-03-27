@@ -504,6 +504,7 @@
                 $("#UserList").find("input[type='checkbox']:checked").each(function () {
                     ids.push($(this).parents("tr").attr("user-id"));               
                 });
+                ids=ids.join();
                 Batch(ids); 
             }            
         }
