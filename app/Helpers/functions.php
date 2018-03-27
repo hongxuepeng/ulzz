@@ -173,7 +173,7 @@ function _unsetNull($arr){
 }
 
 /**
- *在权限前面加上空格
+ * 在权限前面加上空格
  */
 function showUlzz($arr,$pid=0,$form=""){
 	$form.="&nbsp;&nbsp";
