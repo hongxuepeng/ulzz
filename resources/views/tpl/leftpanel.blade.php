@@ -118,15 +118,15 @@
     @{{/each}}
 </script>
 <script type="text/javascript">
+    var lan=$.session.get('lan');
     $.ajax({
         url:"{{url('getMenu')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
-        data:{"_token":"{{csrf_token()}}"},
+        data:{"_token":"{{csrf_token()}}","lan":lan},
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
-            console.log(data);
             if(data.status=="1"){
                 var tableHTML = template('menu', data);
                 $("#NavMeau").html(tableHTML);
