@@ -225,11 +225,11 @@
 <script type="text/javascript">
     function LoadList(){
         $.ajax({
-            url:"{{url('account/edit')}}",
-            type:'GET', //GET
+            url:"{{url('getRole')}}",
+            type:'POST', //GET
             async:false,    //或false,是否异步
             timeout:5000,    //超时时间
-            data:"id="+1,
+            data:{"_token":"{{csrf_token()}}"},
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             success:function(data){
                 console.log(data);
@@ -240,8 +240,7 @@
         });
     }
     LoadList();
-    var name=$("#NameSearch").val();
-    $.ajax({
+   /* $.ajax({
         url:"{{url('account/edit')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
@@ -250,7 +249,7 @@
             "_token":"{{csrf_token()}}",
             "user_nickname":"业务员",//名称
             "user_login":"xiaoli",//登陆账户
-            "user_pwd":name,//登陆密码 为空不修改不为空才修改 后台处理 前端正常获取表单值
+            "user_pwd":null,//登陆密码 为空不修改不为空才修改 后台处理 前端正常获取表单值
             "user_status":1,//用户状态
             "phone":"13267499852",//联系方式
             "user_email":"14326592053@qq.com",//邮箱
@@ -265,7 +264,7 @@
         error:function(){
             console.log('错误');
         }
-    });
+    });*/
     $("#SearchBtn").click(function(){
         LoadList();
     });

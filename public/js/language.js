@@ -62,7 +62,8 @@ var cn = {
     "Save": "保存",
     "SECRECY": "保密",
     "MAN": "男",
-    "WOMAN": "女"    
+    "WOMAN": "女",
+    "Remarks": "备注" 
 };
 var en = {
     "HEADER" : "Ulzz Rental",
@@ -128,7 +129,8 @@ var en = {
     "Save": "Save",
     "SECRECY": "Secrecy",
     "MAN": "Male",
-    "WOMAN": "Female"    
+    "WOMAN": "Female",
+    "Remarks": "Remarks"   
 };
 function BindLanguage() {
     $('[set-lan]').each(function(){
