@@ -297,6 +297,27 @@
                 dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                 success:function(res){
                     console.log(res);
+                    if(res.status=="1"){
+                        $.toast({
+                            heading: 'Success',
+                            text: res.info,
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            icon: 'success',
+                            hideAfter: 1500
+                        });  
+                        LoadList();                      
+                        $("#AddModal").modal('hide');
+                    }else{
+                        $.toast({
+                            heading: 'Error',
+                            text: res.info,
+                            showHideTransition: 'slide',
+                            position: 'top-right',
+                            icon: 'error',
+                            hideAfter: 1500
+                        });
+                    }
                 },
                 error:function(){
                     console.log('错误')
@@ -304,6 +325,7 @@
             });
         }        
     }
+    $("#AddSave").click(AddUser);
     //点击搜素按钮时触发的事件
     $("#SearchBtn").click(function(){
         LoadList();
