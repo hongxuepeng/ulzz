@@ -140,7 +140,7 @@
         <td>@{{$value.user_nickname}}</td>
         <td>@{{$value.user_login}}</td>
         <td>@{{$value.parse_role_id}}</td>
-        <td>@{{if $value.sex=='1'}}男@{{else if $value.sex=='0'}}女@{{else}}保密@{{/if}}</td>
+        <td set-lan="@{{if $value.sex=='1'}}html:MAN@{{else if $value.sex=='0'}}html:WOMAN@{{else}}html:SECRECY@{{/if}}"></td>
         <td>@{{$value.phone}}</td>
         <td set-lan="@{{if $value.user_status=='1'}}html:ENABLEDOPTION@{{else $value.user_status=='0'}}html:DISABLEDOPTION@{{/if}}"></td>
         <td>@{{$value.update_time}}</td>
@@ -152,6 +152,7 @@
     </tr>
     @{{/each}}
 </script>
+<script src="{{ asset('js') }}/language.js"></script>
 <script type="text/javascript">
     //人员列表绑定
     function LoadList(){
@@ -173,7 +174,8 @@
             error:function(){
                 console.log('错误');
             }
-        });  
+        });
+        BindLanguage();  
     }
     LoadList();
     //绑定角色列表
@@ -513,7 +515,5 @@
         }
     });
 </script>
-
-<script src="{{ asset('js') }}/language.js"></script>
 </body>
 </html>
