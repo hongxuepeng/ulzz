@@ -135,7 +135,7 @@
 </div>
 <script type="text/html" id="UserHtml">
     @{{each data}}
-    <tr>
+    <tr user-id="@{{$value.id}}">
         <td><input type="checkbox"></td>
         <td>@{{$value.user_nickname}}</td>
         <td>@{{$value.user_login}}</td>
@@ -445,6 +445,74 @@
         });
     }
     CheckControl();
+    //批量删除人员
+    function Batch(ids){
+        $.ajax({
+            url:"{{url('account/batch')}}",
+            type:'GET', //GET
+            async:false,    //或false,是否异步
+            timeout:5000,    //超时时间
+            data:{
+                "_token":"{{csrf_token()}}",
+                "ids":ids
+            },
+            dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+            success:function(res){
+                console.log(res);
+                if(res.status=="1"){
+                    $.toast({
+                        heading: 'Success',
+                        text: res.info,
+                        showHideTransition: 'slide',
+                        position: 'top-right',
+                        icon: 'success',
+                        hideAfter: 2000
+                    });
+                    LoadList();
+                }else{
+                    $.toast({
+                        heading: 'Error',
+                        text: res.info,
+                        showHideTransition: 'slide',
+                        position: 'top-right',
+                        icon: 'error',
+                        hideAfter: 2000
+                    });
+                }
+            },
+            error:function(){
+                console.log('错误');
+            }
+        });
+    }
+    //单个删除
+    $(".common_delete").click(function(){
+        var length = $("#UserList").find("input[type='checkbox']:checked").length;         
+        if(length<1){
+            $.toast({
+                heading: 'Error',
+                text: "请选择要删除的人员",
+                showHideTransition: 'slide',
+                position: 'top-right',
+                icon: 'error',
+                hideAfter: 2000
+            });
+        }else{
+            if(confirm("确定要删除吗？")){   
+                var ids = new Array();
+                $("#UserList").find("input[type='checkbox']:checked").each(function () {
+                    ids.push($(this).parents("tr").attr("user-id"));               
+                });
+                Batch(ids); 
+            }            
+        }
+    });
+    $(document).on('click','.operation>.delete',function(){
+        if(confirm("确定要删除吗？")){  
+            var ids=$(this).attr("editid");
+            Batch(ids);
+        }
+    });
 </script>
 <script src="{{ asset('js') }}/language.js"></script>
 </body>
