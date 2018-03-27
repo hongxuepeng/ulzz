@@ -53,7 +53,7 @@ class AccountController extends BaseController
 	{
 		$data = $request->all();
 		unset($data['_token']);
-		$data['user_pwd'] = base64_encode($data['user_pwd']);
+		$data['user_pwd'] = md5($data['user_pwd']);
 		$data['update_time'] = date('Y-m-d H:i:s');
 		$data['create_time'] = date('Y-m-d H:i:s');
 		$bool = Ulizz_user::insert($data);
@@ -71,18 +71,17 @@ class AccountController extends BaseController
 	 */
 
 	public function batch(Request $request){
-		$ulzz_userid_arr = $request->ids;
-		if(!empty($ulzz_userid_arr)){
-			return ajax_success('确定要删除吗？');
-		}
-		global $ulzz_userid_data;
-		foreach($ulzz_userid_arr as $value){
-			$ulzz_userid_data = Ulizz_user::destroy($value);
-		}
-		if($ulzz_userid_data){
-			return ajax_success('删除成功');
-		}else{
-			return ajax_error('删除失败');
+		if($request->isMethod('get')) {
+			$ulzz_userid_arr = $request->ids;
+			global $ulzz_userid_data;
+			foreach($ulzz_userid_arr as $value){
+				$ulzz_userid_data = Ulizz_user::destroy($value);
+			}
+			if($ulzz_userid_data == true){
+				return ajax_success('删除成功');
+			}else{
+				return ajax_error('删除失败');
+			}
 		}
 	}
 
