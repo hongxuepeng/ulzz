@@ -1,11 +1,3 @@
-<?php
-$str = "root";
-$str = base64_encode($str);
-echo $str;
-echo '<br>';
-echo base64_decode($str);
-?>
-
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
