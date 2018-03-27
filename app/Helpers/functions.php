@@ -161,7 +161,7 @@ function _unsetNull($arr){
 					if($value === null){
 						$arr[$key] = '';
 					}else{
-						$arr[$key] = _unsetNull($value);      //递归再去执行
+						$arr[$key] = _unsetNull(trim($value));      //递归再去执行
 					}
 				}
 			}else{ $arr = ''; }
