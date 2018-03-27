@@ -39,8 +39,8 @@ function ajax_success($msg = '提交成功',$data=array()){
 function _tree_sort($arr,$cols){
 	//子分类排序
 	foreach ($arr as $k => &$v) {
-		if(!empty($v['sub'])){
-			$v['sub']=_tree_sort($v['sub'],$cols);
+		if(!empty($v['child'])){
+			$v['child']=_tree_sort($v['child'],$cols);
 		}
 		$sort[$k]=$v[$cols];
 	}

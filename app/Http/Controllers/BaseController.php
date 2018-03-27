@@ -38,6 +38,14 @@ class BaseController extends Controller
 			}else{
 				$jurisdiction = 1;
 			}
+			foreach($menu_lists as $k => $v){
+				if(strtolower($v['controller']) == strtolower($routeActionName[0]) && strtolower($v['action']) == strtolower($routeActionName[1])){
+					$adminMenu->where('id',$v['parent_id'])->update(['active'=>1]);
+					$adminMenu->where('id',$v['id'])->update(['active'=>1]);
+				}else{
+					$adminMenu->where('id',$v['id'])->update(['active'=>0]);
+				}
+			}
 			//显示二级目录的名字
 			$current_menu = DB::table('ulizz_menu')->where('controller',strtolower($routeActionName[0]))->where('action',strtolower($routeActionName[1]))->first();
 			if(!empty($current_menu)){
