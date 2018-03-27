@@ -108,13 +108,18 @@
 </div><!-- leftpanel -->
 <script type="text/html" id="menu">
     @{{each data}}
-    <li class="nav-parent"><a href="javascript:void(0)"><i class="fa @{{$value.icon}}"></i> <span>@{{$value.name}}</span></a>
-        <ul class="children">
+    @{{if $value.child=="[]"}}
+    <li class="@{{if $value.active=='1'}}active@{{/if}}"><a href="{!! url('@{{$value.url}}') !!}"><i class="fa fa-home"></i> <span>@{{$value.name}}</span></a></li>
+    @{{else}}
+    <li class="nav-parent @{{if $value.active=='1'}}nav-active active@{{/if}}">
+        <a href="javascript:void(0)"><i class="fa @{{$value.icon}}"></i> <span>@{{$value.name}}</span></a>
+        <ul class="children" style="display: @{{if $value.active=='1'}}block;@{{else}}none@{{/if}}">
             @{{each $value.child as child index}}
-            <li><a href="{!! url('@{{child.url}}') !!}" target="_self"><i class="fa fa-caret-right"></i><span>@{{child.name}}</span></a></li>
+            <li class="@{{if child.active=='1'}}active@{{/if}}"><a href="{!! url('@{{child.url}}') !!}" target="_self"><i class="fa fa-caret-right"></i><span>@{{child.name}}</span></a></li>
             @{{/each}}
         </ul>
     </li>
+    @{{/if}}
     @{{/each}}
 </script>
 <script type="text/javascript">
@@ -127,7 +132,6 @@
         data:{"_token":"{{csrf_token()}}","lan":lan},
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
-            console.log(data);
             if(data.status=="1"){
                 var tableHTML = template('menu', data);
                 $("#NavMeau").html(tableHTML);
