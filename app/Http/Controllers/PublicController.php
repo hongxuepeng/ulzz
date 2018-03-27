@@ -30,7 +30,13 @@ class PublicController extends Controller
 		}
 		$adminMenu = new Ulizz_menu();
 		//取出菜单和用户的权限
-		$menu_lists = $adminMenu->where('status','<>',0)->get()->toArray();
+		$menu_lists = $adminMenu->where('status','<>',0)->get();
+		if($request->lan == 'en'){
+			foreach($menu_lists as &$value){
+				$value->name = $value->en_name;
+			}
+		}
+
 		$role = DB::table('ulizz_roles')->where('id',$userId)->value('menu_role_id');
 		$role = explode(',',$role);
 		if(session('user_id') != 1){

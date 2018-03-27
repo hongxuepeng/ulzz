@@ -127,6 +127,7 @@
         data:{"_token":"{{csrf_token()}}","lan":lan},
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
+            console.log(data);
             if(data.status=="1"){
                 var tableHTML = template('menu', data);
                 $("#NavMeau").html(tableHTML);
