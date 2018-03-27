@@ -54,6 +54,8 @@ class AccountController extends BaseController
 		$data = $request->all();
 		unset($data['_token']);
 		$data['user_pwd'] = md5($data['user_pwd']);
+		$data['update_time'] = date('Y-m-d H:i:s');
+		$data['create_time'] = date('Y-m-d H:i:s');
 		$bool = Ulizz_user::insert($data);
 		if($bool){
 			return ajax_success('添加成功',$data);
