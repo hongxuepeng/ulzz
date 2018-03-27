@@ -100,6 +100,7 @@ class AccountController extends BaseController
 			$data = $request->all();
 			$data['update_time'] = date('Y-m-d H:i:s');
 			unset($data['_token']);
+			$data = _unsetNull($data);
 			$result = Ulizz_user::where('id',$id)->update($data);
 			if($result)
 			{
