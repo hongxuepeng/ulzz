@@ -30,22 +30,23 @@
                 </div>
                 <div class="the-header mb10">
                     <span set-lan="html:HEADERLIST">业务人员列表</span>
+                    <small class="common_delete"></small>
                     <small class="common_add"></small>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-primary table-striped mb30">
+                    <table class="table table-primary table-striped mb30" id="UserTable">
                         <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th set-lan="html:TABLENAME">名称</th>
-                            <th set-lan="html:ACCOUNT">账号</th>
-                            <th set-lan="html:USERROLES">用户角色</th>
-                            <th set-lan="html:SEX">性别</th>
-                            <th set-lan="html:CONTACT">联系方式</th>
-                            <th set-lan="html:ENABLED">启用状态</th>
-                            <th set-lan="html:CREATE">创建时间</th>
-                            <th set-lan="html:OPERATION">操作</th>
-                        </tr>
+                            <tr>
+                                <th><input type="checkbox" class="check-control"></th>
+                                <th set-lan="html:TABLENAME">名称</th>
+                                <th set-lan="html:ACCOUNT">账号</th>
+                                <th set-lan="html:USERROLES">用户角色</th>
+                                <th set-lan="html:SEX">性别</th>
+                                <th set-lan="html:CONTACT">联系方式</th>
+                                <th set-lan="html:ENABLED">启用状态</th>
+                                <th set-lan="html:CREATE">创建时间</th>
+                                <th set-lan="html:OPERATION">操作</th>
+                            </tr>
                         </thead>
                         <tbody id="UserList">                          
                         </tbody>
@@ -296,7 +297,6 @@
                 },
                 dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                 success:function(res){
-                    console.log(res);
                     if(res.status=="1"){
                         $.toast({
                             heading: 'Success',
@@ -345,6 +345,16 @@
         });
     }
     CacheClass();
+    function CheckControl(){
+        $(".check-control").on('change',function(){
+            if ($(this).is(":checked")) {
+                $("#UserTable tbody input[type=checkbox]").prop('checked', true);
+            } else {
+                $("#UserTable tbody input[type=checkbox]").prop('checked', false);
+            }
+        });
+    }
+    CheckControl();
 </script>
 <script src="{{ asset('js') }}/language.js"></script>
 </body>
