@@ -78,14 +78,7 @@ class AccountController extends BaseController
 		{
 			$data = $request->all();
 			$data['update_time'] = date('Y-m-d H:i:s');
-			if(is_null($data['user_pwd']))
-			{
-				$data['user_pwd'] = $userDate['user_pwd'];
-			}
-			else
-			{
-				$data['user_pwd'] = md5($data['user_pwd']);
-			}
+
 			unset($data['_token']);
 			$result = Ulizz_user::where('id',$id)->update($data);
 			if($result)
