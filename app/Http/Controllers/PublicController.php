@@ -46,7 +46,7 @@ class PublicController extends Controller
 				}
 			}
 		}
-		$arr = recursionArr($menu_lists);
+		$arr = _tree_sort(recursionArr($menu_lists),'list_order');
 		return ajax_success('获取成功',$arr);
 	}
 
