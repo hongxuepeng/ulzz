@@ -143,7 +143,7 @@
         <td><input type="checkbox"></td>
         <td>@{{$value.user_nickname}}</td>
         <td>@{{$value.user_login}}</td>
-        <td>@{{$value.role_id}}</td>
+        <td>@{{$value.parse_role_id}}</td>
         <td>@{{if $value.sex=='1'}}男@{{else if $value.sex=='0'}}女@{{else}}保密@{{/if}}</td>
         <td>@{{$value.phone}}</td>
         <td set-lan="@{{if $value.user_status=='1'}}html:ENABLEDOPTION@{{else $value.user_status=='0'}}html:DISABLEDOPTION@{{/if}}"></td>
@@ -332,6 +332,7 @@
     });    
     //点击添加按钮时触发的事件
     $(".common_add").click(function () {
+        $("#AddModal .form-control").val("");
         $("#AddModal").modal();
     });
     //点击编辑按钮时触发的事件
