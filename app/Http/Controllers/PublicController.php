@@ -51,6 +51,29 @@ class PublicController extends Controller
 	}
 
 	/**
+	 * [返回当前菜单所在位置]
+	 * @author 李成龙
+	 * @param    MenuId
+	 * @return   json 菜单数据
+	 */
+	public function currentMenu(Request $request)
+	{
+		$id = $request->id;
+		$adminMenu = new Ulizz_menu();
+		$currentMenu = $adminMenu->where('id',$id)->first();
+		if($request->lan == "en"){
+			$currentMenu['pName'] = DB::table('ulizz_menu')->where('id',$currentMenu['parent_id'])->value('en_name');
+			$currentMenu['name'] = $currentMenu['en_name'];
+		}elseif($request->lan == "cn"){
+			$currentMenu['pName'] = DB::table('ulizz_menu')->where('id',$currentMenu['parent_id'])->value('name');
+		}
+		unset($currentMenu['action'],$currentMenu['active'],$currentMenu['app'],$currentMenu['controller'],$currentMenu['en_name'],$currentMenu['icon'],$currentMenu['url'],$currentMenu['status'],$currentMenu['list_order'],$currentMenu['parent_id'],$currentMenu['id']);
+
+		return ajax_success('获取成功',$currentMenu);
+	}
+
+
+	/**
 	 * [获取角色]
 	 * @author 李成龙
 	 * @param    NULL
