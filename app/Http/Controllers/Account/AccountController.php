@@ -63,6 +63,27 @@ class AccountController extends BaseController
 
 	}
 
+	/**
+	 * [用户批量删除]
+	 * @author 陈绪
+	 * @param  ID & $request
+	 * @return json 状态
+	 */
+
+	public function batch(Request $request){
+		if($request->isMethod('get')) {
+			$ulzz_userid_arr = $request->ids;
+			global $ulzz_userid_data;
+			foreach($ulzz_userid_arr as $value){
+				$ulzz_userid_data = Ulizz_user::destroy($value);
+			}
+			if($ulzz_userid_data == true){
+				return ajax_success('删除成功');
+			}else{
+				return ajax_error('删除失败');
+			}
+		}
+	}
 
 	/**
 	 * [用户管理员修改]
@@ -84,7 +105,7 @@ class AccountController extends BaseController
 			}
 			else
 			{
-				$data['user_pwd'] = md5($data['user_pwd']);
+				$data['user_pwd'] = base64_encode($data['user_pwd']);
 			}
 			unset($data['_token']);
 			$result = Ulizz_user::where('id',$id)->update($data);

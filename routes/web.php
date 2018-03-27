@@ -35,6 +35,8 @@ Route::group(['prefix'=>'account'],function() {
    Route::any('add',$controller.'add');
    #账户修改
    Route::any('edit',$controller.'edit');
+   //用户删除
+   Route::get('batch',$controller.'batch');
 });
 //角色管理
 Route::group(['prefix'=>'role'],function() {
