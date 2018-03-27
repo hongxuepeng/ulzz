@@ -75,6 +75,7 @@ class AccountController extends BaseController
 	public function batch(Request $request){
 		if($request->isMethod('get')) {
 			$ulzz_userid_arr = $request->ids;
+			$ulzz_userid_arr = explode(',',$ulzz_userid_arr);
 			global $ulzz_userid_data;
 			foreach($ulzz_userid_arr as $value){
 				$ulzz_userid_data = Ulizz_user::destroy($value);
