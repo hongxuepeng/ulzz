@@ -22,6 +22,9 @@ Route::any('getMenu','PublicController@getMenu');
 //角色提取
 Route::any('getRole','PublicController@getRole');
 
+//返回当前菜单停留位置
+Route::any('currentMenu','PublicController@currentMenu');
+
 //登录
 Route::any('users/login','UsersController@login');
 Route::any('users/logout','UsersController@logout');
