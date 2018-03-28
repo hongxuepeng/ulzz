@@ -232,6 +232,8 @@
         timeout:5000,    //超时时间
         data:{
             "_token":"{{csrf_token()}}",
+            "icon":null,
+            "id":"11"
         },
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){

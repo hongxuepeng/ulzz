@@ -57,9 +57,15 @@ class MenuController extends BaseController
 	 * @return   json 状态
 	 */
 	public function edit(Request $request){
-		$data = $request->all();
+		$data = _unsetNull($request->all());
 		unset($data['_token']);
-		return ajax_success('修改成功', $data);
+		$result = Ulizz_menu::where('id',$data['id'])->update($data);
+		if($result){
+			return ajax_success('修改成功', $data);
+		}else{
+			return ajax_error('修改失败');
+		}
+
 	}
 	/**
 	 * [菜单删除]
