@@ -65,7 +65,6 @@ class MenuController extends BaseController
 		}else{
 			return ajax_error('修改失败');
 		}
-
 	}
 	/**
 	 * [菜单删除]
@@ -82,6 +81,5 @@ class MenuController extends BaseController
 		} else {
 			return ajax_error('删除失败');
 		}
-
 	}
 }
