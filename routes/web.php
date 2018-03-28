@@ -57,4 +57,6 @@ Route::group(['prefix'=>'menu'],function() {
    Route::any('lister',$controller.'lister');
    #菜单添加
    Route::any('add',$controller.'add');
+   #菜单删除
+   Route::any('del',$controller.'del');
 });

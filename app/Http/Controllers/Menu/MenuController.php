@@ -49,4 +49,21 @@ class MenuController extends BaseController
 			return ajax_error('添加失败');
 		}
 	}
+
+	/**
+	 * [菜单删除]
+	 * @author 陈绪
+	 * @param    Menu ID
+	 * @return   json 状态
+	 */
+	public function del(Request $request)
+	{
+		$id = $request->id;
+		$result = Ulizz_menu::destroy($id);
+		if($result) {
+			return ajax_success('删除成功');
+		} else {
+			return ajax_error('删除失败');
+		}
+	}
 }

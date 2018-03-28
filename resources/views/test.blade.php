@@ -225,14 +225,13 @@
 <script type="text/javascript">
     var name=$("#NameSearch").val();
     $.ajax({
-
-        url:"{{url('getMenu')}}",
-
+        url:"{{url('menu/del')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
         data:{
             "_token":"{{csrf_token()}}",
+            "id":'11',
         },
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
