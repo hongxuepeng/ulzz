@@ -43,6 +43,7 @@ class BaseController extends Controller
 					session(['currentMenu'=>$v['id'],'currentPMenu'=>$v['parent_id']]);
 				}
 			}
+
 			if($jurisdiction != 1 && strtolower($routeActionName[0]) != 'index' && strtolower($routeActionName[1]) != 'index'){
 				return redirect('/');
 			}

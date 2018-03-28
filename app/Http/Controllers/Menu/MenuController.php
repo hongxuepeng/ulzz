@@ -13,17 +13,20 @@ use App\Models\Ulizz_menu;
 
 class MenuController extends BaseController
 {
-
 	/**
 	 * [菜单列表页 菜单的呈现]
-	 * @author 李成龙
+	 * @author 陈绪
 	 * @param    NULL
 	 * @return   Resources MenuPage
 	 */
 	public function lister(Request $request)
 	{
-
-		return view('menu.lister');
+		if($request->isMethod('post')){
+			$menuList = Ulizz_menu::get()->toArray();
+			$menuLists = recursionArr($menuList);
+			return ajax_success('获取成功',$menuLists);
+		}
+		return view('menu/lister');
 	}
 
 	/**

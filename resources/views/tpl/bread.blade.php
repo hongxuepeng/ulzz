@@ -23,7 +23,6 @@
             data:{"_token":"{{csrf_token()}}","lan":lan,"id":MenuId},
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             success:function(res){     
-                //console.log(res);
                 if(res.status=="1"){
                     var pName=res.data.pName;
                     var cName=res.data.name;
