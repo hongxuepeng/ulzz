@@ -137,19 +137,17 @@
 </script>
 <script src="{{ asset('js') }}/language.js"></script>
 <script type="text/javascript">
+    var lan=$.session.get('lan');
     $.ajax({
-        url:"{{url('currentMenu')}}",
+        url:"{{url('menu/lister')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
-        data:{"_token":"{{csrf_token()}}","id":"10","lan":"cn"},
+        data:{"_token":"{{csrf_token()}}","lan":"cn"},
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
         success:function(data){
             console.log(data);
-            if(data.status=="1"){
-                var UserHtml = template('UserHtml', data);
-                $("#UserList").html(UserHtml);
-            }
+
         },
         error:function(){
             console.log('错误');
