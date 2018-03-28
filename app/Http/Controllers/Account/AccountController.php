@@ -98,7 +98,6 @@ class AccountController extends BaseController
 	public function edit(Request $request)
 	{
 		$id = $request->id;
-		$userDate = Ulizz_user::find($id);
 		if($request->isMethod('post'))
 		{
 			$data = $request->all();
@@ -115,6 +114,7 @@ class AccountController extends BaseController
 				return ajax_error('修改失败');
 			}
 		}
+		$userDate = Ulizz_user::find($id);
 		return ajax_success('请求成功',$userDate);
 	}
 
