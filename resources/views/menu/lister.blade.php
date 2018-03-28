@@ -225,9 +225,13 @@
         });
         $(".btn-fold").click(function(){
             $(".menu-list-child").hide();
+            $(".fold>.icon-btn").removeClass("fa-minus-square-o");
+            $(".fold>.icon-btn").addClass("fa-plus-square-o");
         });
         $(".btn-open").click(function(){
             $(".menu-list-child").show();
+            $(".fold>.icon-btn").removeClass("fa-plus-square-o");
+            $(".fold>.icon-btn").addClass("fa-minus-square-o");
         });
         $(".btn-add").click(function(){
             $("#AddMenuModal").modal();
