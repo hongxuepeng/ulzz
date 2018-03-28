@@ -25,12 +25,9 @@ class PublicController extends Controller
 	public function getMenu(Request $request)
 	{
 		$userId = session('user_id');
-		if(!$userId){
-			return ajax_error('获取失败');
-		}
 		$adminMenu = new Ulizz_menu();
 		//取出菜单和用户的权限
-		$menu_lists = $adminMenu->where('status','<>',0)->get();
+		$menu_lists = $adminMenu->where('status','!=',0)->get();
 		if($request->lan == 'en'){
 			foreach($menu_lists as &$value){
 				$value->name = $value->en_name;
@@ -67,10 +64,11 @@ class PublicController extends Controller
 		}elseif($request->lan == "cn"){
 			$currentMenu['pName'] = DB::table('ulizz_menu')->where('id',$currentMenu['parent_id'])->value('name');
 		}
-		unset($currentMenu['action'],$currentMenu['active'],$currentMenu['app'],$currentMenu['controller'],$currentMenu['en_name'],$currentMenu['icon'],$currentMenu['url'],$currentMenu['status'],$currentMenu['list_order'],$currentMenu['parent_id'],$currentMenu['id']);
+		//unset($currentMenu['action'],$currentMenu['active'],$currentMenu['app'],$currentMenu['controller'],$currentMenu['en_name'],$currentMenu['icon'],$currentMenu['url'],$currentMenu['status'],$currentMenu['list_order'],$currentMenu['parent_id'],$currentMenu['id']);
 
 		return ajax_success('获取成功',$currentMenu);
 	}
+
 
 
 	/**

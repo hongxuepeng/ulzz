@@ -10,7 +10,6 @@
     @include('tpl.CommonJs')
 </head>
 <body>
-<input type="hidden" id="EditID">
 <!-- Preloader -->
 <div id="preloader">
     <div id="status"><i class="fa fa-spinner fa-spin"></i></div>
@@ -19,142 +18,254 @@
 
     <div class="mainpanel">
 
+
         <div class="contentpanel">
-            <div class="the-content">
-                <div class="the-control mb10">
-                    <select class="form-control leftoption">
-                        <option set-lan="html:NAME">名称</option>
-                    </select>
-                    <input type="text" name="name" class="form-control centerinput" id="NameSearch">
-                    <button class="btn btn-info rightbutton" set-lan="html:SEARCH" id="SearchBtn">搜索</button>
+            <div class="operation">
+                <button class="btn btn-success btn-fold" set-lan="html:ALLFOLD">全部折叠</button>
+                <button class="btn btn-success btn-open" set-lan="html:ALLOPEN">全部打开</button>
+                <button class="btn btn-success btn-add" set-lan="html:ADDMENU">添加菜单</button>
+            </div>
+            <div class="menu-content">
+                <div class="menu-list">
+                    <div class="menu-list-item menu-list-header">
+                        <div class="menu-list-parent">
+                            <div class="fold" set-lan="html:FOLD">折叠</div>
+                            <div class="order">ID</div>
+                            <div class="order" set-lan="html:SORT">排序</div>
+                            <div class="width-lg" set-lan="html:NAME">名称</div>
+                            <div class="width-lg">URL</div>
+                            <div class="fold"></div>
+                        </div>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-list-parent">
+                            <div class="fold"></div>
+                            <div class="order">1</div>
+                            <div class="order"><input type="text" class="form-control text-center" value="0"></div>
+                            <div class="width-lg"><input type="text" class="form-control" value="首页"></div>
+                            <div class="width-lg"><input type="text" class="form-control" value="/"></div>
+                            <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
+                            <div class="fold pull-right">
+                                <span set-lan="html:DELETE">删除</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-list-parent">
+                            <div class="fold"><i class="fa fa-plus-square-o icon-btn"></i></div>
+                            <div class="order">3</div>
+                            <div class="order"><input type="text" class="form-control text-center" value="1"></div>
+                            <div class="width-lg"><input type="text" class="form-control" value="账号管理"></div>
+                            <div class="width-lg"><input type="text" class="form-control" value=""></div>
+                            <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
+                            <div class="fold pull-right">
+                                <span set-lan="html:DELETE">删除</span>
+                            </div>
+                        </div>
+                        <div class="menu-list-child">
+                            <div class="menu-list-parent">
+                                <div class="fold"></div>
+                                <div class="order">4</div>
+                                <div class="order"><input type="text" class="form-control text-center" value="0"></div>
+                                <div class="fold fold-line"></div>
+                                <div class="width-lg"><input type="text" class="form-control" value="账号管理"></div>
+                                <div class="width-lg"><input type="text" class="form-control" value="/account/user"></div>
+                                <div class="fold pull-right">
+                                    <span set-lan="html:DELETE">删除</span>
+                                </div>
+                            </div>
+                            <div class="menu-list-parent">
+                                <div class="fold"></div>
+                                <div class="order">5</div>
+                                <div class="order"><input type="text" class="form-control text-center" value="1"></div>
+                                <div class="fold fold-line"></div>
+                                <div class="width-lg"><input type="text" class="form-control" value="角色列表"></div>
+                                <div class="width-lg"><input type="text" class="form-control" value="/account/role"></div>
+                                <div class="fold pull-right">
+                                    <span set-lan="html:DELETE">删除</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-list-item">
+                        <div class="menu-list-parent">
+                            <div class="fold"><i class="fa fa-plus-square-o icon-btn"></i></div>
+                            <div class="order">3</div>
+                            <div class="order"><input type="text" class="form-control text-center" value="1"></div>
+                            <div class="width-lg"><input type="text" class="form-control" value="菜单管理"></div>
+                            <div class="width-lg"><input type="text" class="form-control" value=""></div>
+                            <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
+                            <div class="fold pull-right">
+                                <span set-lan="html:DELETE">删除</span>
+                            </div>
+                        </div>
+                        <div class="menu-list-child">
+                            <div class="menu-list-parent">
+                                <div class="fold"></div>
+                                <div class="order">4</div>
+                                <div class="order"><input type="text" class="form-control text-center" value="0"></div>
+                                <div class="fold fold-line"></div>
+                                <div class="width-lg"><input type="text" class="form-control" value="菜单列表"></div>
+                                <div class="width-lg"><input type="text" class="form-control" value="/account/user"></div>
+                                <div class="fold pull-right">
+                                    <span set-lan="html:DELETE">删除</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="the-header mb10">
-                    <span set-lan="html:HEADERLIST">业务人员列表</span>
-                    <small class="common_delete"></small>
-                    <small class="common_add"></small>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-primary table-striped mb30" id="UserTable">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" class="check-control"></th>
-                            <th set-lan="html:TABLENAME">名称</th>
-                            <th set-lan="html:ACCOUNT">账号</th>
-                            <th set-lan="html:USERROLES">用户角色</th>
-                            <th set-lan="html:SEX">性别</th>
-                            <th set-lan="html:CONTACT">联系方式</th>
-                            <th set-lan="html:ENABLED">启用状态</th>
-                            <th set-lan="html:CREATE">创建时间</th>
-                            <th set-lan="html:OPERATION">操作</th>
-                        </tr>
-                        </thead>
-                        <tbody id="UserList">
-                        </tbody>
-                    </table>
-                </div><!-- table-responsive -->
             </div>
         </div><!-- contentpanel -->
     </div><!-- mainpanel -->
 </section>
 @include('tpl.CommonBottom')
-        <!-- 添加以及编辑弹框容器 -->
-<div class="modal fade bs-example-modal-static" id="AddModal">
+        <!-- 添加菜单弹框容器 -->
+<div class="modal fade bs-example-modal-static" id="AddMenuModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-                <h4 class="modal-title" set-lan="html:MODALTITLE">用户维护</h4>
+                <h4 class="modal-title" set-lan="html:MODALTITLE">新增菜单</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:TABLENAME">名称:</label>
+                        <label class="col-sm-3 control-label" set-lan="html:State">状态:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control" id="user_nickname">
+                            <input type="text" placeholder="" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:ACCOUNT">账号:</label>
+                        <label class="col-sm-3 control-label" set-lan="html:MenuSort">菜单排序:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control" id="user_login">
+                            <input type="text" placeholder="" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:ENABLED">启用状态:</label>
+                        <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
                         <div class="col-sm-8">
-                            <select class="form-control" id="user_status">
-                                <option value="1" set-lan="html:ENABLEDOPTION">启用</option>
-                                <option value="0" set-lan="html:DISABLEDOPTION">停用</option>
-                            </select>
+                            <input type="text" placeholder=""  class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:CONTACT">联系方式:</label>
+                        <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
                         <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control" id="phone">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:EMAIL">邮箱:</label>
-                        <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control" id="user_email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:SEX">性别:</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="sex">
-                                <option value="3" set-lan="html:SECRECY">保密</option>
-                                <option value="1" set-lan="html:MAN">男</option>
-                                <option value="0" set-lan="html:WOMAN">女</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:USERROLES">用户角色:</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="getRole">
-                                <option value="">业务员</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label" set-lan="html:Remarks">备注:</label>
-                        <div class="col-sm-8">
-                            <input type="text" placeholder="" class="form-control" id="remarks">
+                            <input type="text" placeholder="" class="form-control">
                         </div>
                     </div>
                 </form>
                 <div class="add_btn">
-                    <span id="AddSave" set-lan="html:Save">保存</span>
+                    <span id="AddMeanuSave" set-lan="html:Save">保存</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script type="text/html" id="UserHtml">
-
-</script>
-<script src="{{ asset('js') }}/language.js"></script>
-<script type="text/javascript">
+<!-- 添加子菜单弹框容器 -->
+<div class="modal fade bs-example-modal-static" id="AddMenuChildModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+                <h4 class="modal-title" set-lan="html:MODALTITLE">新增菜单</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:Upper">上一级菜单:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control" disabled="disabled">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:State">状态:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:MenuSort">菜单排序:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder=""  class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
+                        <div class="col-sm-8">
+                            <input type="text" placeholder="" class="form-control">
+                        </div>
+                    </div>
+                </form>
+                <div class="add_btn">
+                    <span id="AddMeanuChildSave" set-lan="html:Save">保存</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
     $.ajax({
-        url:"{{url('currentMenu')}}",
+        url:"{{url('menu/add')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
-        data:{"_token":"{{csrf_token()}}","id":"10","lan":"cn"},
+        data:{
+            "_token":"{{csrf_token()}}",
+            "parent_id":0,//父ID 意思是上一级菜单
+            "url":"",//菜单url跳转地址
+            "status":1,//菜单状态 1显示 0隐藏不显示
+            "list_order":"100",//排序
+            "app":"House",//目录名 可以为空
+            "controller":"HouseController",//控制器名
+            "action":"",//方法名 可以为空
+            "icon":"",//菜单icon图标 可以为空
+            "name":"房源管理",//菜单名称 不可以为空
+            "en_name":"Housing Management",//菜单英文名称 可以为空 不填后台管理人员手动加
+        },
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(data){
-            console.log(data);
-            if(data.status=="1"){
-                var UserHtml = template('UserHtml', data);
-                $("#UserList").html(UserHtml);
+        success:function(res){
+            console.log(res);
+            if(res.status=="1"){
+
             }
         },
         error:function(){
-            console.log('错误');
+            console.log('错误')
         }
     });
+
+
+    $(document).on('click','.fold>.icon-btn',function () {
+        var child=$(this).parents(".menu-list-item").find(".menu-list-child");
+        if(child.is(":hidden")){
+            child.slideDown('fast');
+            $(this).removeClass("fa-plus-square-o");
+            $(this).addClass("fa-minus-square-o");
+        }else{
+            child.slideUp('fast');
+            $(this).removeClass("fa-minus-square-o");
+            $(this).addClass("fa-plus-square-o");
+        }
+    });
+    $(".btn-fold").click(function(){
+        $(".menu-list-child").hide();
+    });
+    $(".btn-open").click(function(){
+        $(".menu-list-child").show();
+    });
+    $(".btn-add").click(function(){
+        $("#AddMenuModal").modal();
+    });
+    $(document).on('click','.fa-big',function(){
+        $("#AddMenuChildModal").modal();
+    });
 </script>
-</body>
+<script src="{{ asset('js') }}/language.js"></script>
 </html>
