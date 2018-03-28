@@ -225,7 +225,9 @@
 <script type="text/javascript">
     var name=$("#NameSearch").val();
     $.ajax({
-        url:"{{url('menu/lister')}}",
+
+        url:"{{url('getMenu')}}",
+
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
