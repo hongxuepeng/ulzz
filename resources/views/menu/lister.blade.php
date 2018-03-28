@@ -214,10 +214,18 @@
             <div class="menu-list-parent" ItemId="@{{$value.id}}">
                 <div class="fold"><i class="fa fa-plus-square-o icon-btn"></i></div>
                 <div class="order">@{{$value.id}}</div>
-                <div class="order"><input type="text" class="form-control text-center" value="@{{$value.list_order}}" ItemId="@{{$value.id}}"></div>
-                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.name}}" ItemId="@{{$value.id}}"></div>
-                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.icon}}" ItemId="@{{$value.id}}"></div>
-                <div class="width-lg"><input type="text" class="form-control" value="" ItemId="@{{$value.id}}"></div>
+                <div class="order">
+                    <input type="text" class="form-control text-center" value="@{{$value.list_order}}" ItemType="list_order" ItemId="@{{$value.id}}">
+                </div>
+                <div class="width-lg">
+                    <input type="text" class="form-control" value="@{{$value.name}}" ItemType="name" ItemId="@{{$value.id}}">
+                </div>
+                <div class="width-lg">
+                    <input type="text" class="form-control" value="@{{$value.icon}}" ItemType="icon" ItemId="@{{$value.id}}">
+                </div>
+                <div class="width-lg">
+                    <input type="text" class="form-control" value="" ItemType="url" ItemId="@{{$value.id}}">
+                </div>
                 <div class="fold"><i class="fa fa-plus-circle fa-big" ThisName="@{{$value.name}}"></i></div>
                 <div class="fold pull-right">
                     <span set-lan="html:DELETE" class="fold-delete" ItemId="@{{$value.id}}">删除</span>
@@ -228,12 +236,18 @@
                 <div class="menu-list-parent" ItemId="@{{$value.id}}">
                     <div class="fold"></div>
                     <div class="order">@{{child.id}}</div>
-                    <div class="order"><input type="text" class="form-control text-center" value="@{{child.id}}" ItemId="@{{$value.id}}"></div>
+                    <div class="order">
+                        <input type="text" class="form-control text-center"  value="@{{child.list_order}}" ItemType="list_order" ItemId="@{{child.id}}">
+                    </div>
                     <div class="fold fold-line"></div>
-                    <div class="width-lg"><input type="text" class="form-control" value="@{{child.name}}" ItemId="@{{$value.id}}"></div>
-                    <div class="width-lg"><input type="text" class="form-control" value="@{{child.url}}" ItemId="@{{$value.id}}"></div>
+                    <div class="width-lg">
+                        <input type="text" class="form-control" value="@{{child.name}}" ItemType="name" ItemId="@{{child.id}}">
+                    </div>
+                    <div class="width-lg">
+                        <input type="text" class="form-control" value="@{{child.url}}" ItemType="url" ItemId="@{{child.id}}">
+                    </div>
                     <div class="fold pull-right">
-                        <span set-lan="html:DELETE" class="fold-delete" ItemId="@{{$value.id}}">删除</span>
+                        <span set-lan="html:DELETE" class="fold-delete" ItemId="@{{child.id}}">删除</span>
                     </div>
                 </div>
                 @{{/each}}                 
@@ -429,6 +443,7 @@
                                 icon: 'success',
                                 hideAfter: 1500
                             });
+                            MenuList();
                         }else{
                             $.toast({
                                 heading: 'Error',
@@ -443,9 +458,58 @@
                     error:function(){
                         console.log('错误');
                     }
-                }); 
-                MenuList();
+                });                
             }             
+        });
+        $(document).on('focus','.menu-list-parent .form-control',function(){
+            $(this).attr("this-key",$(this).val());
+        });
+        $(document).on('blur','.menu-list-parent .form-control',function(){
+            var self=$(this);
+            var thisKey=self.attr("this-key");
+            var thisValue=self.val();
+            if(thisKey!=thisValue){
+                var DataKey=self.attr("ItemType");
+                var ItemId=self.attr("ItemId");
+                var DataObj={
+                    "_token":"{{csrf_token()}}",
+                    "id":ItemId,
+                }
+                DataObj[DataKey]=thisValue;
+                $.ajax({
+                    url:"{{url('menu/edit')}}",
+                    type:'POST', //GET
+                    async:false,    //或false,是否异步
+                    timeout:5000,    //超时时间
+                    data:DataObj,
+                    dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                    success:function(res){     
+                        //console.log(res);
+                        if(res.status=="1"){
+                            $.toast({
+                                heading: 'Success',
+                                text: res.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'success',
+                                hideAfter: 1500
+                            });
+                        }else{
+                            $.toast({
+                                heading: 'Error',
+                                text: res.info,
+                                showHideTransition: 'slide',
+                                position: 'top-right',
+                                icon: 'error',
+                                hideAfter: 1500
+                            });
+                        }
+                    },
+                    error:function(){
+                        console.log('错误');
+                    }
+                });  
+            }                    
         });
     </script>
     <script src="{{ asset('js') }}/language.js"></script>
