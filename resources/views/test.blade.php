@@ -209,39 +209,21 @@
         </div>
     </div>
 </div>
-</body>
-<script>
+<script type="text/html" id="UserHtml">
+
+</script>
+<script src="{{ asset('js') }}/language.js"></script>
+<script type="text/javascript">
+    var lan=$.session.get('lan');
     $.ajax({
-        url:"{{url('menu/add')}}",
+        url:"{{url('menu/lister')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间
-        data:{
-            "_token":"{{csrf_token()}}",
-            "parent_id":0,//父ID 意思是上一级菜单
-            "url":"",//菜单url跳转地址
-            "status":1,//菜单状态 1显示 0隐藏不显示
-            "list_order":"100",//排序
-            "app":"House",//目录名 可以为空
-            "controller":"HouseController",//控制器名
-            "action":"",//方法名 可以为空
-            "icon":"",//菜单icon图标 可以为空
-            "name":"房源管理",//菜单名称 不可以为空
-            "en_name":"Housing Management",//菜单英文名称 可以为空 不填后台管理人员手动加
-        },
+        data:{"_token":"{{csrf_token()}}","lan":"cn"},
         dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
-        success:function(res){
-            console.log(res);
-            if(res.status=="1"){
-
-            }
-        },
-        error:function(){
-            console.log('错误')
-        }
-    });
-
-
+        success:function(data){
+            console.log(data);
     $(document).on('click','.fold>.icon-btn',function () {
         var child=$(this).parents(".menu-list-item").find(".menu-list-child");
         if(child.is(":hidden")){

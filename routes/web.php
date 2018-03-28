@@ -54,7 +54,7 @@ Route::group(['prefix'=>'role'],function() {
 Route::group(['prefix'=>'menu'],function() {
    $controller = 'Menu\MenuController@';
    #菜单列表页
-   Route::get('lister',$controller.'lister');
+   Route::any('lister',$controller.'lister');
    #菜单添加
    Route::any('add',$controller.'add');
 });
