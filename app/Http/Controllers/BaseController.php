@@ -18,9 +18,7 @@ class BaseController extends Controller
 			$adminMenu = new Ulizz_menu();
 			//取出菜单和用户的权限
 			$menu_lists = $adminMenu->where('status','<>',0)->get()->toArray();
-
 			$role = DB::table('ulizz_roles')->where('id',$user_info['role_id'])->value('menu_role_id');
-
 			$role = explode(',',$role);
 			$routeActionName = Route::currentRouteAction();
 			$routeActionName = explode('@',trim(strrchr($routeActionName, '\\'),'\\'));
@@ -46,15 +44,19 @@ class BaseController extends Controller
 					$adminMenu->where('id',$v['id'])->update(['active'=>0]);
 				}
 			}
-			//显示二级目录的名字
-			$current_menu = DB::table('ulizz_menu')->where('controller',strtolower($routeActionName[0]))->where('action',strtolower($routeActionName[1]))->first();
-			if(!empty($current_menu)){
-				view()->share('__current_menu__',$current_menu);
-				if($current_menu->parent_id != 0){
-					$parent_menu = DB::table('ulizz_menu')->where('id',$current_menu->parent_id)->first();
-					view()->share('__parent_menu__',$parent_menu);
-				}
-			}
+
+
+
+
+		
+		
+		
+		
+				
+			
+
+
+
 			if($jurisdiction != 1 && strtolower($routeActionName[0]) != 'index' && strtolower($routeActionName[1]) != 'index'){
 				return redirect('/');
 			}
