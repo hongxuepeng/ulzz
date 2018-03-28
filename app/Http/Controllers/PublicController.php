@@ -28,9 +28,13 @@ class PublicController extends Controller
 		$adminMenu = new Ulizz_menu();
 		//取出菜单和用户的权限
 		$menu_lists = $adminMenu->where('status','!=',0)->get();
-		if($request->lan == 'en'){
-			foreach($menu_lists as &$value){
+
+		foreach($menu_lists as &$value){
+			if($request->lan == 'en'){
 				$value->name = $value->en_name;
+			}
+			if($value->id == session('currentMenu') || $value->id == session('currentPMenu')){
+				$value->active = 1;
 			}
 		}
 

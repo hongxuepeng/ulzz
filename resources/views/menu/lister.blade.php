@@ -31,6 +31,7 @@
                         <button class="btn btn-success btn-add" set-lan="html:ADDMENU">添加菜单</button>
                     </div>
                     <div class="menu-content">
+
                         <div class="menu-list">
                             <div class="menu-list-item menu-list-header">
                                 <div class="menu-list-parent">
@@ -126,6 +127,9 @@
 
                                 </div>
                             </div>
+
+                        <div class="menu-list" id="MenuList">
+
                         </div>
                     </div>
                 </div><!-- contentpanel -->
@@ -367,6 +371,67 @@
         MenuList();
 
     </body>
+    <script type="text/html" id="MenuHtml">
+        <div class="menu-list-item menu-list-header">
+            <div class="menu-list-parent">
+                <div class="fold" set-lan="html:FOLD">折叠</div>
+                <div class="order">ID</div>
+                <div class="order" set-lan="html:SORT">排序</div>
+                <div class="width-lg" set-lan="html:NAME">名称</div>
+                <div class="width-lg">ICON</div>
+                <div class="width-lg">URL</div>
+                <div class="fold"></div>
+            </div>
+        </div>
+        @{{each data}}
+        @{{if $value.child==""}}
+        <div class="menu-list-item">
+            <div class="menu-list-parent">
+                <div class="fold"></div>
+                <div class="order">@{{$value.id}}</div>
+                <div class="order"><input type="text" class="form-control text-center" value="@{{$value.list_order}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.name}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.icon}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.url}}"></div>
+                <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
+                <div class="fold pull-right">
+                    <span set-lan="html:DELETE">删除</span>
+                </div>
+            </div>
+        </div>
+        @{{else}}
+        <div class="menu-list-item">
+            <div class="menu-list-parent">
+                <div class="fold"><i class="fa fa-plus-square-o icon-btn"></i></div>
+                <div class="order">@{{$value.id}}</div>
+                <div class="order"><input type="text" class="form-control text-center" value="@{{$value.list_order}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.name}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.icon}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value=""></div>
+                <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
+                <div class="fold pull-right">
+                    <span set-lan="html:DELETE">删除</span>
+                </div>
+            </div>
+            <div class="menu-list-child">
+                @{{each $value.child as child index}}
+                <div class="menu-list-parent">
+                    <div class="fold"></div>
+                    <div class="order">@{{child.id}}</div>
+                    <div class="order"><input type="text" class="form-control text-center" value="@{{child.id}}"></div>
+                    <div class="fold fold-line"></div>
+                    <div class="width-lg"><input type="text" class="form-control" value="@{{child.name}}"></div>
+                    <div class="width-lg"><input type="text" class="form-control" value="@{{child.url}}"></div>
+                    <div class="fold pull-right">
+                        <span set-lan="html:DELETE">删除</span>
+                    </div>
+                </div>
+                @{{/each}}                 
+            </div>
+        </div>
+        @{{/if}}
+        @{{/each}}           
+    </script>
     <script>
         $(document).on('click','.fold>.icon-btn',function () {
             var child=$(this).parents(".menu-list-item").find(".menu-list-child");
@@ -407,7 +472,8 @@
                 success:function(res){     
                     console.log(res);
                     if(res.status=="1"){
-                        
+                        var MenuHtml = template('MenuHtml', res);
+                        $("#MenuList").html(MenuHtml);
                     }
                 },
                 error:function(){
@@ -415,7 +481,11 @@
                 }
             });  
         }
+
         //MenuList();
+
+
+        MenuList();
 
     </script>
     <script src="{{ asset('js') }}/language.js"></script>
