@@ -69,7 +69,7 @@ class MenuController extends BaseController
 	}
 	/**
 	 * [菜单删除]
-	 * @author 陈绪
+	 * @author 李成龙
 	 * @param    Menu ID
 	 * @return   json 状态
 	 */
