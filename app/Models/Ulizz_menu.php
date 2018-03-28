@@ -10,25 +10,21 @@ use Illuminate\Database\Eloquent\Model;
 class Ulizz_menu extends Base
 {
 	protected $table = 'ulizz_menu';
-
 	/**
 	 * [递归获取菜单]
 	 * @author 李成龙
 	 * @param    父ID
-	 * @return   拼接的下拉框 option
+	 * @return   Array
 	 */
-	public function recursionGetMenu($parent_id = 0, $num = 0) {
-		$optionStr = '';
-		$arr = $this->where('parent_id', $parent_id)->get();
-		$gang = str_repeat('&nbsp;&nbsp;&nbsp;', $num);
-		$num++;
+	public function recursionArr($pid = 0) {
+		$array = [];
+		$arr = $this->where('pid',$pid)->get();
 		foreach ($arr as $value) {
-			$name = $value->name;
-			$parent_id = $value->id;
-			$optionStr .= "<option value='{$parent_id}'>{$gang}{$name}</option>";
-			$optionStr .= $this->recursionGetMenu($parent_id,$num);
+			if ($value->pid == $pid) {
+				$value['child'] = $this->recursionArr($value->id);
+				$array[] = $value;
+			}
 		}
-		return $optionStr;
-
+		return $array;
 	}
 }

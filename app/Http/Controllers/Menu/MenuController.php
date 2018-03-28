@@ -15,41 +15,37 @@ class MenuController extends BaseController
 {
 	/**
 	 * [菜单列表页 菜单的呈现]
-	 * @author 李成龙
+	 * @author 陈绪
 	 * @param    NULL
 	 * @return   Resources MenuPage
 	 */
-	public function lister()
+	public function lister(Request $request)
 	{
+
 		$menuList = Ulizz_menu::get()->toArray();
 		$menuLists = recursionArr($menuList);
 		return ajax_success('获取成功',$menuLists);
+
 	}
 
 	/**
-	 * [菜单添加页面显示 & 菜单添加表单处理]
+	 * [菜单添加表单处理]
 	 * @author 李成龙
 	 * @param    $request
-	 * @return   布尔值 & Resources MenuPage
+	 * @return   json 状态
 	 */
 	public function add(Request $request)
 	{
-		if($request->isMethod('post'))
+		$data = _unsetNull($request->all());
+		unset($data['_token']);
+		$result = Ulizz_menu::insert($data);
+		if($result)
 		{
-			$data = _unsetNull($request->all());
-			unset($data['_token']);
-			$result = Ulizz_menu::insert($data);
-			if($result)
-			{
-				return redirect('menu/lister');
-			}
-			else
-			{
-				return redirect('menu/add');
-			}
+			return ajax_success('添加成功',$data);
 		}
-		$menu = new Ulizz_menu();
-		$menuOption = $menu->recursionGetMenu();
-		return view('menu.add',['menuOption'=>$menuOption]);
+		else
+		{
+			return ajax_error('添加失败');
+		}
 	}
 }
