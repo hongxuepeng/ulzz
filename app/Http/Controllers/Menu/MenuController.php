@@ -49,4 +49,17 @@ class MenuController extends BaseController
 			return ajax_error('添加失败');
 		}
 	}
+
+	/**
+	 * [菜单修改维护]
+	 * @author 李成龙
+	 * @param    $request
+	 * @return   json 状态
+	 */
+	public function edit(Request $request)
+	{
+		$data = $request->all();
+		unset($data['_token']);
+		return ajax_success('修改成功',$data);
+	}
 }
