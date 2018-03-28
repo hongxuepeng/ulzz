@@ -56,8 +56,6 @@ class AccountController extends BaseController
 		unset($data['_token']);
 		$data['user_pwd'] = md5('888888');
 		$data['user_login'] = trim($data['user_login']);
-		$data['update_time'] = date('Y-m-d H:i:s');
-		$data['create_time'] = date('Y-m-d H:i:s');
 		$data = _unsetNull($data);
 		$bool = Ulizz_user::insert($data);
 		if($bool){
@@ -101,7 +99,6 @@ class AccountController extends BaseController
 		if($request->isMethod('post'))
 		{
 			$data = $request->all();
-			$data['update_time'] = date('Y-m-d H:i:s');
 			unset($data['_token']);
 			$data = _unsetNull($data);
 			$result = Ulizz_user::where('id',$id)->update($data);
