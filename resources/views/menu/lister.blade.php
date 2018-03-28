@@ -207,7 +207,7 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
+
     </div>
 </div>
 </body>
@@ -238,39 +238,5 @@
     });
 </script>
 <script src="{{ asset('js') }}/language.js"></script>
-=======
-    </body>
-    <script>
-        $(document).on('click','.fold>.icon-btn',function () {
-            var child=$(this).parents(".menu-list-item").find(".menu-list-child");
-            if(child.is(":hidden")){
-                child.slideDown('fast');
-                $(this).removeClass("fa-plus-square-o");
-                $(this).addClass("fa-minus-square-o");
-            }else{
-                child.slideUp('fast');
-                $(this).removeClass("fa-minus-square-o");
-                $(this).addClass("fa-plus-square-o");
-            }
-        });
-        $(".btn-fold").click(function(){
-            $(".menu-list-child").hide();
-            $(".fold>.icon-btn").removeClass("fa-minus-square-o");
-            $(".fold>.icon-btn").addClass("fa-plus-square-o");
-        });
-        $(".btn-open").click(function(){
-            $(".menu-list-child").show();
-            $(".fold>.icon-btn").removeClass("fa-plus-square-o");
-            $(".fold>.icon-btn").addClass("fa-minus-square-o");
-        });
-        $(".btn-add").click(function(){
-            $("#AddMenuModal").modal();
-        });
-        $(document).on('click','.fa-big',function(){
-            $("#AddMenuChildModal").modal();
-        });
-    </script>
-    <script src="{{ asset('js') }}/language.js"></script>
->>>>>>> 511ade8641657f7ac600c4caee5cf241bdf8a4f3
 </html>
 
