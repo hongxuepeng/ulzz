@@ -23,7 +23,7 @@ class MenuController extends BaseController
 	{
 		if($request->isMethod('post')){
 			$menuList = Ulizz_menu::get()->toArray();
-			$menuLists = recursionArr($menuList);
+			$menuLists = _tree_sort(recursionArr($menuList),'list_order');
 			return ajax_success('获取成功',$menuLists);
 		}
 		return view('menu/lister');
