@@ -33,6 +33,7 @@
                                     <div class="order">ID</div>
                                     <div class="order" set-lan="html:SORT">排序</div>
                                     <div class="width-lg" set-lan="html:NAME">名称</div>
+                                    <div class="width-lg">ICON</div>
                                     <div class="width-lg">URL</div>
                                     <div class="fold"></div>
                                 </div>
@@ -43,6 +44,7 @@
                                     <div class="order">1</div>
                                     <div class="order"><input type="text" class="form-control text-center" value="0"></div>
                                     <div class="width-lg"><input type="text" class="form-control" value="首页"></div>
+                                    <div class="width-lg"><input type="text" class="form-control" value="fa-home"></div>
                                     <div class="width-lg"><input type="text" class="form-control" value="/"></div>
                                     <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
                                     <div class="fold pull-right">
@@ -56,6 +58,7 @@
                                     <div class="order">3</div>
                                     <div class="order"><input type="text" class="form-control text-center" value="1"></div>
                                     <div class="width-lg"><input type="text" class="form-control" value="账号管理"></div>
+                                    <div class="width-lg"><input type="text" class="form-control" value="fa-laptop"></div>
                                     <div class="width-lg"><input type="text" class="form-control" value=""></div>
                                     <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
                                     <div class="fold pull-right">
@@ -93,6 +96,7 @@
                                     <div class="order">3</div>
                                     <div class="order"><input type="text" class="form-control text-center" value="1"></div>
                                     <div class="width-lg"><input type="text" class="form-control" value="菜单管理"></div>
+                                    <div class="width-lg"><input type="text" class="form-control" value="fa-reorder"></div>
                                     <div class="width-lg"><input type="text" class="form-control" value=""></div>
                                     <div class="fold"><i class="fa fa-plus-circle fa-big"></i></div>
                                     <div class="fold pull-right">
@@ -125,12 +129,52 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-                        <h4 class="modal-title" set-lan="html:MODALTITLE">新增菜单</h4>
+                        <h4 class="modal-title">添加菜单</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" set-lan="html:State">状态:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control">
+                                        <option value="">请选择状态</option>
+                                        <option value="1">显示</option>
+                                        <option value="0">隐藏</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder=""  class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">APP:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Controller:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Action:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">菜单Icon:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
@@ -141,18 +185,6 @@
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" placeholder=""  class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
-                                <div class="col-sm-8">
-                                    <input type="text" placeholder="" class="form-control">
-                                </div>
-                            </div>                         
                         </form>
                         <div class="add_btn">
                             <span id="AddMeanuSave" set-lan="html:Save">保存</span>
@@ -167,7 +199,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-                        <h4 class="modal-title" set-lan="html:MODALTITLE">新增菜单</h4>
+                        <h4 class="modal-title">添加子菜单</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal">
@@ -180,13 +212,17 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" set-lan="html:State">状态:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="" class="form-control">
+                                    <select class="form-control">
+                                        <option value="">请选择状态</option>
+                                        <option value="1">显示</option>
+                                        <option value="0">隐藏</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:MenuSort">菜单排序:</label>
+                                <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
                                 <div class="col-sm-8">
-                                    <input type="text" placeholder="" class="form-control">
+                                    <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -196,11 +232,35 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" set-lan="html:MenuURL">菜单URL:</label>
+                                <label class="col-sm-3 control-label">APP:</label>
                                 <div class="col-sm-8">
                                     <input type="text" placeholder="" class="form-control">
                                 </div>
-                            </div>                         
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Controller:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Action:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">菜单Icon:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" set-lan="html:MenuSort">菜单排序:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" placeholder="" class="form-control">
+                                </div>
+                            </div>                
                         </form>
                         <div class="add_btn">
                             <span id="AddMeanuChildSave" set-lan="html:Save">保存</span>
@@ -239,6 +299,26 @@
         $(document).on('click','.fa-big',function(){
             $("#AddMenuChildModal").modal();
         });
+        function MenuList(){
+            $.ajax({
+                url:"{{url('menu/lister')}}",
+                type:'POST', //GET
+                async:false,    //或false,是否异步
+                timeout:5000,    //超时时间
+                data:{"_token":"{{csrf_token()}}"},
+                dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
+                success:function(res){     
+                    console.log(res);
+                    if(res.status=="1"){
+                        
+                    }
+                },
+                error:function(){
+                    console.log('错误');
+                }
+            });  
+        }
+        MenuList();
     </script>
     <script src="{{ asset('js') }}/language.js"></script>
 </html>
