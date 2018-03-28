@@ -21,11 +21,12 @@ class MenuController extends BaseController
 	 */
 	public function lister(Request $request)
 	{
-
-		$menuList = Ulizz_menu::get()->toArray();
-		$menuLists = recursionArr($menuList);
-		return ajax_success('获取成功',$menuLists);
-
+		if($request->isMethod('post')){
+			$menuList = Ulizz_menu::get()->toArray();
+			$menuLists = recursionArr($menuList);
+			return ajax_success('获取成功',$menuLists);
+		}
+		return view('menu/lister');
 	}
 
 	/**
