@@ -45,6 +45,18 @@ class BaseController extends Controller
 				}
 			}
 
+
+
+
+		
+		
+		
+		
+				
+			
+
+
+
 			if($jurisdiction != 1 && strtolower($routeActionName[0]) != 'index' && strtolower($routeActionName[1]) != 'index'){
 				return redirect('/');
 			}
