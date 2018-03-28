@@ -207,7 +207,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 </body>
@@ -239,4 +238,3 @@
 </script>
 <script src="{{ asset('js') }}/language.js"></script>
 </html>
-

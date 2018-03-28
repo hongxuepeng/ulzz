@@ -4242,7 +4242,7 @@ div.error label.error:before {
 }
 .menu-list{
     padding-top: 20px;
-    min-width: 860px;
+    min-width: 1080px;
 }
 .menu-list-item{
     border-bottom: 1px solid #ccc;
