@@ -64,7 +64,7 @@ class PublicController extends Controller
 		}elseif($request->lan == "cn"){
 			$currentMenu['pName'] = DB::table('ulizz_menu')->where('id',$currentMenu['parent_id'])->value('name');
 		}
-		//unset($currentMenu['action'],$currentMenu['active'],$currentMenu['app'],$currentMenu['controller'],$currentMenu['en_name'],$currentMenu['icon'],$currentMenu['url'],$currentMenu['status'],$currentMenu['list_order'],$currentMenu['parent_id'],$currentMenu['id']);
+		unset($currentMenu['action'],$currentMenu['active'],$currentMenu['app'],$currentMenu['controller'],$currentMenu['en_name'],$currentMenu['icon'],$currentMenu['url'],$currentMenu['status'],$currentMenu['list_order']);
 
 		return ajax_success('获取成功',$currentMenu);
 	}
