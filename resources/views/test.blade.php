@@ -212,7 +212,7 @@
 </body>
 <script>
     $.ajax({
-        url:"{{url('menu/add')}}",
+        url:"{{url('getMenu')}}",
         type:'POST', //GET
         async:false,    //或false,是否异步
         timeout:5000,    //超时时间

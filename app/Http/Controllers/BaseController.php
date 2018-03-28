@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Ulizz_menu;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
 class BaseController extends Controller
 {
 	public function __construct()
@@ -38,25 +40,9 @@ class BaseController extends Controller
 			}
 			foreach($menu_lists as $k => $v){
 				if(strtolower($v['controller']) == strtolower($routeActionName[0]) && strtolower($v['action']) == strtolower($routeActionName[1])){
-					$adminMenu->where('id',$v['parent_id'])->update(['active'=>1]);
-					$adminMenu->where('id',$v['id'])->update(['active'=>1]);
-				}else{
-					$adminMenu->where('id',$v['id'])->update(['active'=>0]);
+					session(['currentMenu'=>$v['id'],'currentPMenu'=>$v['parent_id']]);
 				}
 			}
-
-
-
-
-		
-		
-		
-		
-				
-			
-
-
-
 			if($jurisdiction != 1 && strtolower($routeActionName[0]) != 'index' && strtolower($routeActionName[1]) != 'index'){
 				return redirect('/');
 			}
