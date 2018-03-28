@@ -210,7 +210,7 @@
         </div>
         @{{else}}
         <div class="menu-list-item">
-            <div class="menu-list-parent">
+            <div class="menu-list-parent" ItemId="@{{$value.id}}">
                 <div class="fold"><i class="fa fa-plus-square-o icon-btn"></i></div>
                 <div class="order">@{{$value.id}}</div>
                 <div class="order"><input type="text" class="form-control text-center" value="@{{$value.list_order}}"></div>
@@ -224,7 +224,7 @@
             </div>
             <div class="menu-list-child">
                 @{{each $value.child as child index}}
-                <div class="menu-list-parent">
+                <div class="menu-list-parent" ItemId="@{{$value.id}}">
                     <div class="fold"></div>
                     <div class="order">@{{child.id}}</div>
                     <div class="order"><input type="text" class="form-control text-center" value="@{{child.id}}"></div>
