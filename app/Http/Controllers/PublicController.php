@@ -73,8 +73,6 @@ class PublicController extends Controller
 		return ajax_success('获取成功',$currentMenu);
 	}
 
-
-
 	/**
 	 * [获取角色]
 	 * @author 李成龙

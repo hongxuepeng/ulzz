@@ -45,6 +45,7 @@ class MenuController extends BaseController
 			return ajax_success('添加成功',$data);
 		}
 		else
+
 		{
 			return ajax_error('添加失败');
 		}
@@ -75,7 +76,8 @@ class MenuController extends BaseController
 	public function del(Request $request)
 	{
 		$id = $request->id;
-		$result = Ulizz_menu::destroy($id);
+		$result = Ulizz_menu::where('id',$id)->orWhere('parent_id',$id)->delete();
+		//$result = Ulizz_menu::destroy($id);
 		if($result) {
 			return ajax_success('删除成功');
 		} else {
