@@ -59,4 +59,7 @@ Route::group(['prefix'=>'menu'],function() {
    Route::any('add',$controller.'add');
    #菜单修改
    Route::any('edit',$controller.'edit');
+   #菜单删除
+   Route::any('del',$controller.'del');
+
 });
