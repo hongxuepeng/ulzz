@@ -61,7 +61,6 @@ class AccountController extends BaseController
 		if($bool){
 			return ajax_success('添加成功',$data);
 		}
-
 	}
 
 	/**
