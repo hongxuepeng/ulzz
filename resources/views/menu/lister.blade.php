@@ -67,6 +67,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">Enname:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control FormEnname">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">APP:</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control FormApp">
@@ -140,6 +146,12 @@
                                 <label class="col-sm-3 control-label" set-lan="html:MenuName">菜单名称:</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control FormName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Enname:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control FormEnname">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -328,6 +340,7 @@
            var action=$("#"+this_modal+" .FormAction").val();
            var icon=$("#"+this_modal+" .FormIcon").val();
            var name=$("#"+this_modal+" .FormName").val();
+           var en_name=$("#"+this_modal+" .FormEnname").val();
            if(status==""){
                 $.toast({
                     heading: 'Error',
@@ -385,7 +398,7 @@
                         "action":action,
                         "icon":icon,
                         "name":name,
-                        "en_name":""
+                        "en_name":en_name
                     },
                     dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                     success:function(res){     
