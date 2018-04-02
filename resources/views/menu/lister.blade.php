@@ -67,6 +67,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">Enname:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control FormEnname">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">APP:</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control FormApp">
@@ -143,6 +149,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">Enname:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control FormEnname">
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">APP:</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control FormApp">
@@ -199,10 +211,12 @@
             <div class="menu-list-parent" ItemId="@{{$value.id}}">
                 <div class="fold"></div>
                 <div class="order">@{{$value.id}}</div>
-                <div class="order"><input type="text" class="form-control text-center" value="@{{$value.list_order}}" ItemId="@{{$value.id}}"></div>
-                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.name}}" ItemId="@{{$value.id}}"></div>
-                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.icon}}" ItemId="@{{$value.id}}"></div>
-                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.url}}" ItemId="@{{$value.id}}"></div>
+                <div class="order">
+                    <input type="text" class="form-control text-center" value="@{{$value.list_order}}" ItemType="list_order" ItemId="@{{$value.id}}">
+                </div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.name}}" ItemType="name" ItemId="@{{$value.id}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.icon}}" ItemType="icon" ItemId="@{{$value.id}}"></div>
+                <div class="width-lg"><input type="text" class="form-control" value="@{{$value.url}}" ItemType="url" ItemId="@{{$value.id}}"></div>
                 <div class="fold"><i class="fa fa-plus-circle fa-big" ThisName="@{{$value.name}}"></i></div>
                 <div class="fold pull-right">
                     <span set-lan="html:DELETE" class="fold-delete" ItemId="@{{$value.id}}">删除</span>
@@ -328,6 +342,7 @@
            var action=$("#"+this_modal+" .FormAction").val();
            var icon=$("#"+this_modal+" .FormIcon").val();
            var name=$("#"+this_modal+" .FormName").val();
+           var en_name=$("#"+this_modal+" .FormEnname").val();
            if(status==""){
                 $.toast({
                     heading: 'Error',
@@ -385,7 +400,7 @@
                         "action":action,
                         "icon":icon,
                         "name":name,
-                        "en_name":""
+                        "en_name":en_name
                     },
                     dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
                     success:function(res){     
