@@ -225,7 +225,6 @@
 <script type="text/javascript">
     var name=$("#NameSearch").val();
     $.ajax({
-
         url:"{{url('menu/del')}}",
         type:'GET', //GET
         async:false,    //或false,是否异步
